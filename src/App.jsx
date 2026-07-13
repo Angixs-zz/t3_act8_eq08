@@ -1,6 +1,6 @@
 import { useState } from "react";
-import  PaginaSistema  from "./paginas/PaginaSistema"; // <-- CON llaves (la de Miguel)
-import PaginaLogin from "./paginas/PaginaLogin";     // <-- SIN llaves (la tuya)
+import  PaginaSistema  from "./paginas/PaginaSistema"; 
+import PaginaLogin from "./paginas/PaginaLogin";    
 
 function App() {
   const [usuario, setUsuario] = useState(null);
@@ -12,7 +12,6 @@ function App() {
       setCargandoLogin(true);
       setErrorLogin("");
 
-      // Petición real POST a la API de DummyJSON para la Fase 1
       const respuesta = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -24,7 +23,7 @@ function App() {
       }
 
       const datosUsuario = await respuesta.json();
-      setUsuario(datosUsuario); // Aquí guardamos el usuario real que regresa la API
+      setUsuario(datosUsuario); 
     } catch (error) {
       setErrorLogin(error.message);
     } finally {
@@ -33,7 +32,7 @@ function App() {
   }
 
   function manejarCerrarSesion() {
-    setUsuario(null); // Borra la sesión y nos regresa al login
+    setUsuario(null);
   }
 
   return (

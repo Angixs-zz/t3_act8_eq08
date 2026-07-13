@@ -19,11 +19,9 @@
     border: 1px solid #eaecef;
 }
 
-/* PANEL IZQUIERDO - AZUL */
 .login-panel-izquierdo {
     flex: 1;
-    background-color: #1b2a5a; /* Azul marino de tu Figma */
-    display: flex;
+    background-color: #1b2a5a; 
     align-items: center;
     justify-content: center;
     padding: 40px;
@@ -46,14 +44,14 @@
     object-fit: contain;
 }
 
-/* PANEL DERECHO - FORMULARIO */
+
 .login-panel-derecho {
     flex: 1;
     padding: 50px 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #fafbfe; /* Fondo sutil de la derecha */
+    background-color: #fafbfe;
 }
 
 .login-encabezado-header {
@@ -128,12 +126,17 @@
 }
 
 .login-input-icono {
-    position: absolute;
-    left: 14px;
-    color: #a0a7c4;
-    font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
 }
 
+.login-input-icono img {
+  width: 20px;  
+  height: 20px;  
+  opacity: 0.6; 
+}
 .login-input-con-icono input {
     width: 100%;
     height: 46px;
@@ -162,7 +165,6 @@
     color: #a0a7c4;
 }
 
-/* OPCIONES ADICIONALES */
 .login-opciones-adicionales {
     display: flex;
     justify-content: space-between;
@@ -193,7 +195,7 @@
 .login-boton-entrar {
     width: 100%;
     height: 48px;
-    background-color: #0052cc; /* Azul rey de tu Figma */
+    background-color: #0052cc;
     color: white;
     border: none;
     border-radius: 10px;
@@ -229,14 +231,14 @@
     font-weight: 600;
 }
 
-/* RESPONSIVE PARA MÓVILES (Fase 4 - Buenas Prácticas) */
+
 @media (max-width: 768px) {
     .login-tarjeta-contenedor {
         flex-direction: column;
         max-width: 440px;
     }
     .login-panel-izquierdo {
-        display: none; /* Oculta el panel azul en pantallas pequeñas para que no estorbe */
+        display: none; 
     }
     .login-panel-derecho {
         padding: 35px 30px;

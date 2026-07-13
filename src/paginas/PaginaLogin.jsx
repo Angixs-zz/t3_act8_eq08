@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "../estilos/login.css";
-import escudoUniversidad from "../assets/hero.png"; 
+import escudoUniversidad from "../assets/escudo.jpg"; 
+import iconoMail from "../assets/correo.jpg"; 
+import iconoCandado from "../assets/candado.png"; 
+
 
 function PaginaLogin({ enviarLogin, cargando, error }) {
-  // Estados locales completamente en español
   const [usuario, setUsuario] = useState("");
   const [contrasenia, setContrasenia] = useState("");
   const [mostrarContrasenia, setMostrarContrasenia] = useState(false);
@@ -13,7 +15,7 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
     evento.preventDefault();
     setErrorValidacion("");
 
-    // Validación obligatoria en español
+  
     if (usuario.trim() === "" || contrasenia.trim() === "") {
       setErrorValidacion("Por favor, rellene todos los campos.");
       return;
@@ -27,14 +29,14 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
     <div className="login-pantalla-completa">
       <div className="login-tarjeta-contenedor">
         
-        {/* PARTE IZQUIERDA: Panel Azul con el Escudo */}
+        
         <div className="login-panel-izquierdo">
           <div className="login-marco-escudo">
             <img src={escudoUniversidad} alt="Escudo Universitario" className="login-escudo-img" />
           </div>
         </div>
 
-        {/* PARTE DERECHA: Formulario */}
+     
         <div className="login-panel-derecho">
           <div className="login-encabezado-header">
             <span className="login-marca-texto">ControlTec</span>
@@ -45,29 +47,38 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
             <h1 className="login-titulo-principal">Iniciar sesión</h1>
             <p className="login-subtitulo">Accede al sistema de administración escolar</p>
 
-            {/* Alertas de Error */}
+       
             {errorValidacion && <p className="login-alerta-error">{errorValidacion}</p>}
             {error && <p className="login-alerta-error">{error}</p>}
 
-            <div className="login-campo-grupo">
-              <label htmlFor="usuario">Correo institucional</label>
-              <div className="login-input-con-icono">
-                <span className="login-input-icono">✉️</span>
+                    <div className="login-campo-grupo">
+            <label htmlFor="usuario">Correo institucional</label>
+            <div className="login-input-con-icono">
+                
+                <span className="login-input-icono">
+                <img src={iconoMail} alt="Icono de correo" />
+                </span>
+              
+                
                 <input
-                  id="usuario"
-                  type="text"
-                  placeholder="nombre@colegio.edu.mx"
-                  value={usuario}
-                  onChange={(e) => setUsuario(e.target.value)}
-                  disabled={cargando}
+                id="usuario"
+                type="text"
+                placeholder="nombre@colegio.edu.mx"
+                value={usuario}
+                onChange={(e) => setUsuario(e.target.value)}
+                disabled={cargando}
                 />
-              </div>
+            </div>
             </div>
 
             <div className="login-campo-grupo">
               <label htmlFor="contrasenia">Contraseña</label>
               <div className="login-input-con-icono">
-                <span className="login-input-icono">🔒</span>
+                <span className="login-input-icono">
+                <img src={iconoCandado} alt="Icono de Candado" />
+
+
+                </span>
                 <input
                   id="contrasenia"
                   type={mostrarContrasenia ? "text" : "password"}
