@@ -20,7 +20,10 @@ function PaginaSistema({ usuario, cerrarSesion }) {
             return (
                 <section>
                     <h1>Gestión de estudiantes</h1>
-                    <p>La tabla se integrará más adelante.</p>
+                    <p>
+                        La tabla y las acciones CRUD se integrarán
+                        posteriormente.
+                    </p>
                 </section>
             );
         }
