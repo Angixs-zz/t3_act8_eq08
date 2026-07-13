@@ -1,31 +1,32 @@
-function NavBar({ usuario, cerrarSesion }) {
+function NavBar({ usuario }) {
     return (
         <header className="navbar">
-            <div className="navbar-usuario">
-                <img
-                    src={usuario.image}
-                    alt="Foto del usuario"
-                    className="navbar-imagen"
-                />
+            <div className="navbar-buscador">
+                <span className="icono-busqueda">⌕</span>
 
-                <div>
+                <input
+                    type="text"
+                    placeholder="Buscar expedientes o cursos..."
+                />
+            </div>
+
+            <div className="navbar-usuario">
+                <div className="navbar-datos">
                     <p className="navbar-nombre">
                         {usuario.firstName} {usuario.lastName}
                     </p>
 
-                    <p className="navbar-correo">
-                        {usuario.email}
+                    <p className="navbar-cargo">
+                        Administrador escolar
                     </p>
                 </div>
-            </div>
 
-            <button
-                type="button"
-                className="boton-cerrar-sesion"
-                onClick={cerrarSesion}
-            >
-                Cerrar sesión
-            </button>
+                <img
+                    src={usuario.image}
+                    alt="Foto del usuario"
+                    className="navbar-foto"
+                />
+            </div>
         </header>
     );
 }
