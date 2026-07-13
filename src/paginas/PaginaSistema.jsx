@@ -3,6 +3,7 @@ import NavBar from "../componentes/NavBar";
 import SlideBar from "../componentes/SlideBar";
 import PaginaInicio from "./PaginaInicio";
 import "../estilos/sistema.css";
+import PaginaRegistros from "./PaginaRegistros";
 
 function PaginaSistema({ usuario, cerrarSesion }) {
     const [paginaActual, setPaginaActual] = useState("inicio");
@@ -17,15 +18,7 @@ function PaginaSistema({ usuario, cerrarSesion }) {
         }
 
         if (paginaActual === "registros") {
-            return (
-                <section>
-                    <h1>Gestión de estudiantes</h1>
-                    <p>
-                        La tabla y las acciones CRUD se integrarán
-                        posteriormente.
-                    </p>
-                </section>
-            );
+            return <PaginaRegistros />;
         }
 
         return null;
