@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import {
     obtenerProductos,
     obtenerCategorias,
-    eliminarProducto
+    eliminarProducto,
+    editarProducto
 } from "../servicios/servicioProductos";
 import Paginacion from "../componentes/Paginacion";
 import FiltrosProductos from "../componentes/FiltrosProductos";
@@ -17,6 +18,9 @@ function PaginaRegistros() {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
     const [productoEditar, setProductoEditar] = useState(null);
     const [productoEliminar, setProductoEliminar] = useState(null);
+    const [tituloEditar, setTituloEditar] = useState("");
+    const [precioEditar, setPrecioEditar] = useState("");
+    const [stockEditar, setStockEditar] = useState("");
     const parametrosIniciales = new URLSearchParams(
         window.location.search
     );
@@ -229,6 +233,9 @@ function PaginaRegistros() {
 
     function seleccionarProductoEditar(producto) {
         setProductoEditar(producto);
+        setTituloEditar(producto.title);
+        setPrecioEditar(producto.price);
+        setStockEditar(producto.stock);
     }
 
     function seleccionarProductoEliminar(producto) {
@@ -267,6 +274,61 @@ function PaginaRegistros() {
         }
     }
 
+    async function guardarCambiosProducto() {
+        if (productoEditar === null) {
+            return;
+        }
+
+        if (
+            tituloEditar.trim() === "" ||
+            precioEditar === "" ||
+            stockEditar === ""
+        ) {
+            alert("Todos los campos son obligatorios.");
+            return;
+        }
+
+        const confirmar = window.confirm(
+            "¿Seguro que deseas guardar los cambios de este producto?"
+        );
+
+        if (!confirmar) {
+            return;
+        }
+
+        try {
+            const datosActualizados = {
+                title: tituloEditar,
+                price: Number(precioEditar),
+                stock: Number(stockEditar)
+            };
+
+            const productoActualizado = await editarProducto(
+                productoEditar.id,
+                datosActualizados
+            );
+
+            setProductos(function (productosActuales) {
+                return productosActuales.map(function (producto) {
+                    if (producto.id === productoEditar.id) {
+                        return {
+                            ...producto,
+                            ...productoActualizado
+                        };
+                    }
+
+                    return producto;
+                });
+            });
+
+            setProductoEditar(null);
+
+            alert("El producto se actualizó correctamente.");
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
     return (
         <section>
             <h1>Gestión de productos</h1>
@@ -290,10 +352,64 @@ function PaginaRegistros() {
             />
 
             {productoEditar !== null && (
-                <p>
-                    Producto seleccionado para editar:{" "}
-                    {productoEditar.title}
-                </p>
+                <div>
+                    <h2>Editar producto</h2>
+
+                    <label htmlFor="tituloEditar">
+                        Nombre del producto
+                    </label>
+
+                    <input
+                        id="tituloEditar"
+                        type="text"
+                        value={tituloEditar}
+                        onChange={function (evento) {
+                            setTituloEditar(evento.target.value);
+                        }}
+                    />
+
+                    <label htmlFor="precioEditar">
+                        Precio
+                    </label>
+
+                    <input
+                        id="precioEditar"
+                        type="number"
+                        value={precioEditar}
+                        onChange={function (evento) {
+                            setPrecioEditar(evento.target.value);
+                        }}
+                    />
+
+                    <label htmlFor="stockEditar">
+                        Stock
+                    </label>
+
+                    <input
+                        id="stockEditar"
+                        type="number"
+                        value={stockEditar}
+                        onChange={function (evento) {
+                            setStockEditar(evento.target.value);
+                        }}
+                    />
+
+                    <button
+                        type="button"
+                        onClick={guardarCambiosProducto}
+                    >
+                        Guardar cambios
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={function () {
+                            setProductoEditar(null);
+                        }}
+                    >
+                        Cancelar
+                    </button>
+                </div>
             )}
 
             {productoEliminar !== null && (
