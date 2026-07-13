@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "../estilos/login.css";
-import escudoUniversidad from "../assets/escudo.jpg"; 
+import logotipo from "../assets/abarrotes.jpg"; 
 import iconoMail from "../assets/correo.jpg"; 
 import iconoCandado from "../assets/candado.png"; 
+import logoabarrotes from "../assets/logoabarrotes.jpg";
+import { Eye, EyeOff } from "lucide-react";
 
 
 function PaginaLogin({ enviarLogin, cargando, error }) {
@@ -32,16 +34,21 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
         
         <div className="login-panel-izquierdo">
           <div className="login-marco-escudo">
-            <img src={escudoUniversidad} alt="Escudo Universitario" className="login-escudo-img" />
+            <img src={logotipo} alt="Logo abarrotes" className="login-logo-img" />
           </div>
         </div>
 
      
         <div className="login-panel-derecho">
+          
           <div className="login-encabezado-header">
-            <span className="login-marca-texto">ControlTec</span>
-            <div className="login-icono-graduacion">🎓</div>
-          </div>
+            <img 
+            src={logoabarrotes} 
+            alt="Logo El Mandadito" 
+            className="login-logo-header-chiquito" 
+            />
+            <span className="login-marca-texto">El Mandadito</span>
+        </div>
 
           <form onSubmit={manejarEnvio} className="login-formulario-flujo">
             <h1 className="login-titulo-principal">Iniciar sesión</h1>
@@ -79,6 +86,8 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
 
 
                 </span>
+
+
                 <input
                   id="contrasenia"
                   type={mostrarContrasenia ? "text" : "password"}
@@ -87,17 +96,21 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
                   onChange={(e) => setContrasenia(e.target.value)}
                   disabled={cargando}
                 />
-                <button
-                  type="button"
-                  className="login-boton-ojo"
-                  onClick={() => setMostrarContrasenia(!mostrarContrasenia)}
+                            <button
+                type="button"
+                className="login-boton-ojo"
+                onClick={() => setMostrarContrasenia(!mostrarContrasenia)}
                 >
-                  {mostrarContrasenia ? "👁️" : "👁️‍🗨️"}
+                {mostrarContrasenia ? (
+                    <EyeOff size={20} className="icono-ojo-lucide" />
+                ) : (
+                    <Eye size={20} className="icono-ojo-lucide" />
+                )}
                 </button>
               </div>
             </div>
 
-            {/* Fila de Recordar / Olvidaste Contraseña */}
+           
             <div className="login-opciones-adicionales">
               <label className="login-checkbox-label">
                 <input type="checkbox" />
@@ -107,12 +120,10 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
             </div>
 
             <button type="submit" className="login-boton-entrar" disabled={cargando}>
-              {cargando ? "Cargando..." : "Entrar →"}
+              {cargando ? "Cargando..." : "Entrar"}
             </button>
 
-            <p className="login-soporte-texto">
-              ¿Necesitas ayuda técnica? <a href="#soporte">Solicítalo aquí</a>
-            </p>
+            
           </form>
         </div>
 
