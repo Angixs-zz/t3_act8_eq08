@@ -1,22 +1,56 @@
-import PaginaSistema from "./paginas/PaginaSistema";
+import { useState } from "react";
+import PaginaSistema from "./paginas/PaginaSistema"; 
+import PaginaLogin from "./paginas/PaginaLogin";    
 
 function App() {
-  const usuarioPrueba = {
-    firstName: "Miguel",
-    lastName: "Hernández",
-    email: "miguel@controltec.edu.mx",
-    image: "https://dummyjson.com/icon/emilys/128"
-  };
+  const [usuario, setUsuario] = useState(null);
+  const [cargandoLogin, setCargandoLogin] = useState(false);
+  const [errorLogin, setErrorLogin] = useState("");
 
-  function cerrarSesionTemporal() {
-    alert("El cierre de sesión se conectará después con el login.");
+  async function manejarLogin(username, password) {
+    try {
+      setCargandoLogin(true);
+      setErrorLogin("");
+
+      const respuesta = await fetch("https://dummyjson.com/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("Usuario o contraseña incorrectos");
+      }
+
+      const datosUsuario = await respuesta.json();
+      setUsuario(datosUsuario); 
+    } catch (error) {
+      setErrorLogin(error.message);
+    } finally {
+      setCargandoLogin(false);
+    }
+  }
+
+  function manejarCerrarSesion() {
+    setUsuario(null);
   }
 
   return (
-    <PaginaSistema
-      usuario={usuarioPrueba}
-      cerrarSesion={cerrarSesionTemporal}
-    />
+    <>
+      {!usuario ? (
+        <PaginaLogin 
+          enviarLogin={manejarLogin} 
+          cargando={cargandoLogin} 
+          error={errorLogin} 
+        />
+      ) : (
+       
+        <PaginaSistema
+          usuario={usuario}
+          cerrarSesion={manejarCerrarSesion}
+        />
+      )}
+    </>
   );
 }
 
