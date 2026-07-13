@@ -4,6 +4,7 @@ import {
     obtenerCategorias
 } from "../servicios/servicioProductos";
 import Paginacion from "../componentes/Paginacion";
+import FiltrosProductos from "../componentes/FiltrosProductos";
 
 function PaginaRegistros() {
     const [productos, setProductos] = useState([]);
@@ -226,46 +227,13 @@ function PaginaRegistros() {
         <section>
             <h1>Gestión de productos</h1>
 
-            <div>
-                <label htmlFor="busqueda">
-                    Buscar producto
-                </label>
-
-                <input
-                    id="busqueda"
-                    type="text"
-                    placeholder="Buscar por nombre"
-                    value={busqueda}
-                    onChange={cambiarBusqueda}
-                />
-            </div>
-
-            <div>
-                <label htmlFor="categoria">
-                    Categoría
-                </label>
-
-                <select
-                    id="categoria"
-                    value={categoriaSeleccionada}
-                    onChange={cambiarCategoria}
-                >
-                    <option value="">
-                        Todas las categorías
-                    </option>
-
-                    {categorias.map(function (categoria) {
-                        return (
-                            <option
-                                key={categoria.slug}
-                                value={categoria.slug}
-                            >
-                                {categoria.name}
-                            </option>
-                        );
-                    })}
-                </select>
-            </div>
+            <FiltrosProductos
+                busqueda={busqueda}
+                categoriaSeleccionada={categoriaSeleccionada}
+                categorias={categorias}
+                cambiarBusqueda={cambiarBusqueda}
+                cambiarCategoria={cambiarCategoria}
+            />
 
             <p>
                 Productos encontrados: {productosFiltrados.length}
