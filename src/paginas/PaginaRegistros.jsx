@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import {
     obtenerProductos,
-    obtenerCategorias
+    obtenerCategorias,
+    eliminarProducto
 } from "../servicios/servicioProductos";
 import Paginacion from "../componentes/Paginacion";
 import FiltrosProductos from "../componentes/FiltrosProductos";
@@ -234,6 +235,38 @@ function PaginaRegistros() {
         setProductoEliminar(producto);
     }
 
+    async function confirmarEliminacion() {
+        if (productoEliminar === null) {
+            return;
+        }
+
+        const confirmar = window.confirm(
+            "¿Seguro que deseas eliminar el producto " +
+            productoEliminar.title +
+            "?"
+        );
+
+        if (!confirmar) {
+            return;
+        }
+
+        try {
+            await eliminarProducto(productoEliminar.id);
+
+            setProductos(function (productosActuales) {
+                return productosActuales.filter(function (producto) {
+                    return producto.id !== productoEliminar.id;
+                });
+            });
+
+            setProductoEliminar(null);
+
+            alert("El producto se eliminó correctamente.");
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
     return (
         <section>
             <h1>Gestión de productos</h1>
@@ -264,10 +297,28 @@ function PaginaRegistros() {
             )}
 
             {productoEliminar !== null && (
-                <p>
-                    Producto seleccionado para eliminar:{" "}
-                    {productoEliminar.title}
-                </p>
+                <div>
+                    <p>
+                        Producto seleccionado para eliminar:{" "}
+                        {productoEliminar.title}
+                    </p>
+
+                    <button
+                        type="button"
+                        onClick={confirmarEliminacion}
+                    >
+                        Confirmar eliminación
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={function () {
+                            setProductoEliminar(null);
+                        }}
+                    >
+                        Cancelar
+                    </button>
+                </div>
             )}
 
             <Paginacion
