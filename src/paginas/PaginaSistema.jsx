@@ -1,30 +1,46 @@
-import React from "react";
+import { useState } from "react";
+import NavBar from "../componentes/NavBar";
+import SlideBar from "../componentes/SlideBar";
+import PaginaInicio from "./PaginaInicio";
+import "../estilos/sistema.css";
+import PaginaRegistros from "./PaginaRegistros";
 
 function PaginaSistema({ usuario, cerrarSesion }) {
-  return (
-    <div style={{ padding: "40px", fontFamily: "sans-serif", textAlign: "center" }}>
-      <h1>🎓 ControlTec - Panel Principal</h1>
-      <p>¡Bienvenido al sistema de administración escolar!</p>
-      
-      <div style={{ margin: "30px card", padding: "20px", background: "#f0f2f5", borderRadius: "12px", display: "inline-block" }}>
-        <img 
-          src={usuario?.image} 
-          alt="Perfil" 
-          style={{ width: "80px", height: "80px", borderRadius: "50%", border: "3px solid #0052cc" }} 
-        />
-        <h2>{usuario?.firstName} {usuario?.lastName}</h2>
-        <p style={{ color: "#666" }}>{usuario?.email}</p>
-      </div>
+    const [paginaActual, setPaginaActual] = useState("inicio");
 
-      <br />
-      <button 
-        onClick={cerrarSesion} 
-        style={{ padding: "10px 20px", backgroundColor: "#dc3545", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: "bold" }}
-      >
-        Cerrar sesión
-      </button>
-    </div>
-  );
+    function cambiarPagina(nuevaPagina) {
+        setPaginaActual(nuevaPagina);
+    }
+
+    function mostrarPagina() {
+        if (paginaActual === "inicio") {
+            return <PaginaInicio />;
+        }
+
+        if (paginaActual === "registros") {
+            return <PaginaRegistros />;
+        }
+
+        return null;
+    }
+
+    return (
+        <div className="sistema">
+            <SlideBar
+                paginaActual={paginaActual}
+                cambiarPagina={cambiarPagina}
+                cerrarSesion={cerrarSesion}
+            />
+
+            <div className="sistema-contenido">
+                <NavBar usuario={usuario} />
+
+                <main className="contenido-principal">
+                    {mostrarPagina()}
+                </main>
+            </div>
+        </div>
+    );
 }
 
 export default PaginaSistema;

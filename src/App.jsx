@@ -1,5 +1,5 @@
 import { useState } from "react";
-import  PaginaSistema  from "./paginas/PaginaSistema"; 
+import PaginaSistema from "./paginas/PaginaSistema"; 
 import PaginaLogin from "./paginas/PaginaLogin";    
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
   const [cargandoLogin, setCargandoLogin] = useState(false);
   const [errorLogin, setErrorLogin] = useState("");
 
+  // Tu función real que conecta a internet con la API
   async function manejarLogin(username, password) {
     try {
       setCargandoLogin(true);
@@ -31,6 +32,7 @@ function App() {
     }
   }
 
+  // Tu función para destruir la sesión al salir
   function manejarCerrarSesion() {
     setUsuario(null);
   }
@@ -38,12 +40,15 @@ function App() {
   return (
     <>
       {!usuario ? (
+        // Si no hay usuario, se muestra tu pantalla de Login funcional
         <PaginaLogin 
           enviarLogin={manejarLogin} 
           cargando={cargandoLogin} 
           error={errorLogin} 
         />
       ) : (
+        // Si el usuario es correcto, lo deja pasar a la PaginaSistema de Miguel
+        // Pasándole el usuario real de la API y tu función de cerrar sesión
         <PaginaSistema
           usuario={usuario}
           cerrarSesion={manejarCerrarSesion}
