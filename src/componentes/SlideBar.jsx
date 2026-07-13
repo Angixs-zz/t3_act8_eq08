@@ -16,12 +16,12 @@ function SlideBar({
             <div>
                 <div className="sidebar-encabezado">
                     <div className="sidebar-logo">
-                        🎓
+                        LOGO
                     </div>
 
                     <div>
-                        <h2>ControlTec</h2>
-                        <p>Instituto Tecnológico</p>
+                        <h2>El mandadito</h2>
+                        <p>Tienda de productos variados</p>
                     </div>
                 </div>
 
@@ -35,7 +35,7 @@ function SlideBar({
                         }
                         onClick={irAInicio}
                     >
-                        <span className="sidebar-icono">▦</span>
+                        <span className="sidebar-icono">I</span>
                         Inicio
                     </button>
 
@@ -48,8 +48,8 @@ function SlideBar({
                         }
                         onClick={irARegistros}
                     >
-                        <span className="sidebar-icono">🎓</span>
-                        Estudiantes
+                        <span className="sidebar-icono">I</span>
+                        Productos
                     </button>
                 </nav>
             </div>

@@ -1,128 +1,167 @@
+import { useEffect, useState } from "react";
+import { obtenerProductos } from "../servicios/servicioProductos";
+
 function PaginaInicio() {
-    const registrosRecientes = [
-        {
-            id: 1,
-            iniciales: "AL",
-            nombre: "Ana López",
-            matricula: "22161001",
-            curso: "Programación Web",
-            fecha: "Hoy, 09:15 AM"
-        },
-        {
-            id: 2,
-            iniciales: "PS",
-            nombre: "Paco Suárez",
-            matricula: "23145678",
-            curso: "Programación Web",
-            fecha: "Hoy, 09:15 AM"
-        },
-        {
-            id: 3,
-            iniciales: "JH",
-            nombre: "Juan Hernández",
-            matricula: "34567564",
-            curso: "Programación Web",
-            fecha: "Hoy, 09:15 AM"
-        },
-        {
-            id: 4,
-            iniciales: "ST",
-            nombre: "Silvia Torres",
-            matricula: "23145907",
-            curso: "Programación Web",
-            fecha: "Hoy, 09:15 AM"
-        },
-        {
-            id: 5,
-            iniciales: "SM",
-            nombre: "Sandra Mónica",
-            matricula: "24567890",
-            curso: "Programación Web",
-            fecha: "Hoy, 09:15 AM"
+    const [productos, setProductos] = useState([]);
+    const [cargando, setCargando] = useState(true);
+    const [error, setError] = useState("");
+
+    useEffect(function () {
+        cargarProductos();
+    }, []);
+
+    async function cargarProductos() {
+        try {
+            setCargando(true);
+            setError("");
+
+            const productosObtenidos = await obtenerProductos();
+
+            setProductos(productosObtenidos);
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setCargando(false);
         }
-    ];
+    }
+
+    const productosRecientes = productos.slice(0, 5);
+
+    const productosPocoStock = productos.filter(function (producto) {
+        return producto.stock <= 10;
+    });
+
+    function obtenerEstadoStock(stock) {
+        if (stock === 0) {
+            return "Agotado";
+        }
+
+        if (stock <= 10) {
+            return "Poco stock";
+        }
+
+        return "Disponible";
+    }
+
+    function obtenerClaseEstado(stock) {
+        if (stock === 0) {
+            return "estado-agotado";
+        }
+
+        if (stock <= 10) {
+            return "estado-poco-stock";
+        }
+
+        return "estado-disponible";
+    }
 
     return (
         <section className="pagina-inicio">
             <div className="encabezado-pagina">
-                <h1>Administración Escolar</h1>
+                <h1>Administración de tienda</h1>
 
                 <p>
-                    Bienvenido al sistema de administración escolar.
-                    Aquí tienes un resumen de la actividad de hoy.
+                    Bienvenido al sistema de administración de El Mandadito.
+                    Aquí tienes un resumen del inventario actual.
                 </p>
             </div>
 
             <div className="tarjetas-estadisticas">
                 <article className="tarjeta-estadistica">
                     <div className="tarjeta-icono">
-                        👥
+                        📦
                     </div>
 
-                    <p>Total de estudiantes</p>
-                    <h2>1,248</h2>
+                    <p>Total de productos</p>
+                    <h2>{productos.length}</h2>
                 </article>
 
                 <article className="tarjeta-estadistica">
                     <div className="tarjeta-icono">
-                        🎓
+                        ⚠️
                     </div>
 
-                    <p>Docentes registrados</p>
-                    <h2>86</h2>
+                    <p>Productos con poco stock</p>
+                    <h2>{productosPocoStock.length}</h2>
                 </article>
             </div>
 
             <section className="registros-recientes">
                 <div className="encabezado-registros">
-                    <h2>Registros recientes</h2>
+                    <h2>Productos recientes</h2>
 
                     <button type="button">
                         Ver todos
                     </button>
                 </div>
 
-                <div className="tabla-recientes">
-                    <div className="fila encabezado-tabla">
-                        <span>ESTUDIANTE</span>
-                        <span>CURSO</span>
-                        <span>FECHA</span>
-                        <span>ESTADO</span>
-                    </div>
+                {cargando && (
+                    <p className="mensaje-tabla">
+                        Cargando productos...
+                    </p>
+                )}
 
-                    {registrosRecientes.map(function (registro) {
-                        return (
-                            <div
-                                className="fila fila-registro"
-                                key={registro.id}
-                            >
-                                <div className="datos-estudiante">
-                                    <div className="avatar-iniciales">
-                                        {registro.iniciales}
+                {error !== "" && (
+                    <p className="mensaje-error">
+                        {error}
+                    </p>
+                )}
+
+                {!cargando && error === "" && (
+                    <div className="tabla-recientes">
+                        <div className="fila encabezado-tabla">
+                            <span>PRODUCTO</span>
+                            <span>CATEGORÍA</span>
+                            <span>PRECIO</span>
+                            <span>STOCK</span>
+                        </div>
+
+                        {productosRecientes.map(function (producto) {
+                            return (
+                                <div
+                                    className="fila fila-registro"
+                                    key={producto.id}
+                                >
+                                    <div className="datos-producto">
+                                        <img
+                                            className="imagen-producto-inicio"
+                                            src={producto.thumbnail}
+                                            alt={producto.title}
+                                        />
+
+                                        <div>
+                                            <strong>
+                                                {producto.title}
+                                            </strong>
+
+                                            <small>
+                                                ID: {producto.id}
+                                            </small>
+                                        </div>
                                     </div>
 
-                                    <div>
-                                        <strong>
-                                            {registro.nombre}
-                                        </strong>
+                                    <span>
+                                        {producto.category}
+                                    </span>
 
-                                        <small>
-                                            {registro.matricula}
-                                        </small>
-                                    </div>
+                                    <span>
+                                        ${producto.price.toFixed(2)}
+                                    </span>
+
+                                    <span
+                                        className={obtenerClaseEstado(
+                                            producto.stock
+                                        )}
+                                    >
+                                        {obtenerEstadoStock(
+                                            producto.stock
+                                        )}
+                                    </span>
                                 </div>
-
-                                <span>{registro.curso}</span>
-
-                                <span>{registro.fecha}</span>
-
-                                <span className="estado-completado">
-                                    Completado
-                                </span>
-                            </div>
-                        );
-                    })}
-                </div>
+                            );
+                        })}
+                    </div>
+                )}
             </section>
         </section>
     );

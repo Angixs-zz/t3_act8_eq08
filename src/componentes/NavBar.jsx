@@ -17,7 +17,7 @@ function NavBar({ usuario }) {
                     </p>
 
                     <p className="navbar-cargo">
-                        Administrador escolar
+                        Administrador
                     </p>
                 </div>
 
