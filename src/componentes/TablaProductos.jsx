@@ -1,4 +1,8 @@
-function TablaProductos({ productos }) {
+function TablaProductos({
+    productos,
+    seleccionarEditar,
+    seleccionarEliminar
+}) {
     if (productos.length === 0) {
         return (
             <p>
@@ -38,11 +42,21 @@ function TablaProductos({ productos }) {
                             <td>{producto.stock}</td>
 
                             <td>
-                                <button type="button">
+                                <button
+                                    type="button"
+                                    onClick={function () {
+                                        seleccionarEditar(producto);
+                                    }}
+                                >
                                     Editar
                                 </button>
 
-                                <button type="button">
+                                <button
+                                    type="button"
+                                    onClick={function () {
+                                        seleccionarEliminar(producto);
+                                    }}
+                                >
                                     Eliminar
                                 </button>
                             </td>

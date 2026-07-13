@@ -14,6 +14,8 @@ function PaginaRegistros() {
     const [error, setError] = useState("");
     const [busqueda, setBusqueda] = useState("");
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
+    const [productoEditar, setProductoEditar] = useState(null);
+    const [productoEliminar, setProductoEliminar] = useState(null);
     const parametrosIniciales = new URLSearchParams(
         window.location.search
     );
@@ -224,6 +226,14 @@ function PaginaRegistros() {
         actualizarUrl(1, limite);
     }
 
+    function seleccionarProductoEditar(producto) {
+        setProductoEditar(producto);
+    }
+
+    function seleccionarProductoEliminar(producto) {
+        setProductoEliminar(producto);
+    }
+
     return (
         <section>
             <h1>Gestión de productos</h1>
@@ -240,7 +250,25 @@ function PaginaRegistros() {
                 Productos encontrados: {productosFiltrados.length}
             </p>
 
-            <TablaProductos productos={productosPagina} />
+            <TablaProductos
+                productos={productosPagina}
+                seleccionarEditar={seleccionarProductoEditar}
+                seleccionarEliminar={seleccionarProductoEliminar}
+            />
+
+            {productoEditar !== null && (
+                <p>
+                    Producto seleccionado para editar:{" "}
+                    {productoEditar.title}
+                </p>
+            )}
+
+            {productoEliminar !== null && (
+                <p>
+                    Producto seleccionado para eliminar:{" "}
+                    {productoEliminar.title}
+                </p>
+            )}
 
             <Paginacion
                 paginaActual={paginaActual}
