@@ -3,6 +3,9 @@ import {
     obtenerProductos,
     obtenerCategorias
 } from "../servicios/servicioProductos";
+import Paginacion from "../componentes/Paginacion";
+import FiltrosProductos from "../componentes/FiltrosProductos";
+import TablaProductos from "../componentes/TablaProductos";
 
 function PaginaRegistros() {
     const [productos, setProductos] = useState([]);
@@ -225,89 +228,28 @@ function PaginaRegistros() {
         <section>
             <h1>Gestión de productos</h1>
 
-            <div>
-                <label htmlFor="busqueda">
-                    Buscar producto
-                </label>
-
-                <input
-                    id="busqueda"
-                    type="text"
-                    placeholder="Buscar por nombre"
-                    value={busqueda}
-                    onChange={cambiarBusqueda}
-                />
-            </div>
-
-            <div>
-                <label htmlFor="categoria">
-                    Categoría
-                </label>
-
-                <select
-                    id="categoria"
-                    value={categoriaSeleccionada}
-                    onChange={cambiarCategoria}
-                >
-                    <option value="">
-                        Todas las categorías
-                    </option>
-
-                    {categorias.map(function (categoria) {
-                        return (
-                            <option
-                                key={categoria.slug}
-                                value={categoria.slug}
-                            >
-                                {categoria.name}
-                            </option>
-                        );
-                    })}
-                </select>
-            </div>
+            <FiltrosProductos
+                busqueda={busqueda}
+                categoriaSeleccionada={categoriaSeleccionada}
+                categorias={categorias}
+                cambiarBusqueda={cambiarBusqueda}
+                cambiarCategoria={cambiarCategoria}
+            />
 
             <p>
                 Productos encontrados: {productosFiltrados.length}
             </p>
 
-            <div>
-                <label htmlFor="limite">
-                    Registros por página
-                </label>
+            <TablaProductos productos={productosPagina} />
 
-                <select
-                    id="limite"
-                    value={limite}
-                    onChange={cambiarLimite}
-                >
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
-                </select>
-            </div>
-
-            <div>
-                <button
-                    type="button"
-                    onClick={paginaAnterior}
-                    disabled={paginaActual === 1}
-                >
-                    Anterior
-                </button>
-
-                <span>
-                    Página {paginaActual} de {totalPaginas}
-                </span>
-
-                <button
-                    type="button"
-                    onClick={paginaSiguiente}
-                    disabled={paginaActual === totalPaginas}
-                >
-                    Siguiente
-                </button>
-            </div>
+            <Paginacion
+                paginaActual={paginaActual}
+                totalPaginas={totalPaginas}
+                limite={limite}
+                paginaAnterior={paginaAnterior}
+                paginaSiguiente={paginaSiguiente}
+                cambiarLimite={cambiarLimite}
+            />
 
             <p>
                 Productos mostrados: {productosPagina.length}
