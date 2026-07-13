@@ -5,6 +5,7 @@ import {
 } from "../servicios/servicioProductos";
 import Paginacion from "../componentes/Paginacion";
 import FiltrosProductos from "../componentes/FiltrosProductos";
+import TablaProductos from "../componentes/TablaProductos";
 
 function PaginaRegistros() {
     const [productos, setProductos] = useState([]);
@@ -238,6 +239,8 @@ function PaginaRegistros() {
             <p>
                 Productos encontrados: {productosFiltrados.length}
             </p>
+
+            <TablaProductos productos={productosPagina} />
 
             <Paginacion
                 paginaActual={paginaActual}
