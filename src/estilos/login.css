@@ -1,0 +1,244 @@
+.login-pantalla-completa {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+.login-tarjeta-contenedor {
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #eaecef;
+}
+
+/* PANEL IZQUIERDO - AZUL */
+.login-panel-izquierdo {
+    flex: 1;
+    background-color: #1b2a5a; /* Azul marino de tu Figma */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.login-marco-escudo {
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-escudo-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* PANEL DERECHO - FORMULARIO */
+.login-panel-derecho {
+    flex: 1;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fafbfe; /* Fondo sutil de la derecha */
+}
+
+.login-encabezado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.login-marca-texto {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1b2a5a;
+}
+
+.login-icono-graduacion {
+    background-color: #0052cc;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.login-formulario-flujo {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-titulo-principal {
+    font-size: 32px;
+    color: #1b2a5a;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.login-subtitulo {
+    font-size: 14px;
+    color: #6c7393;
+    margin: 0 0 32px 0;
+}
+
+.login-alerta-error {
+    background-color: #fde8e8;
+    color: #e02424;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    border: 1px solid #f9b8b8;
+}
+
+.login-campo-grupo {
+    margin-bottom: 24px;
+}
+
+.login-campo-grupo label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4c5375;
+    margin-bottom: 8px;
+}
+
+.login-input-con-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-input-icono {
+    position: absolute;
+    left: 14px;
+    color: #a0a7c4;
+    font-size: 16px;
+}
+
+.login-input-con-icono input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px 0 42px;
+    border: 1px solid #dbdeeb;
+    background-color: #f3f5f9;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #1b2a5a;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.login-input-con-icono input:focus {
+    border-color: #0052cc;
+    background-color: white;
+}
+
+.login-boton-ojo {
+    position: absolute;
+    right: 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #a0a7c4;
+}
+
+/* OPCIONES ADICIONALES */
+.login-opciones-adicionales {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 32px;
+}
+
+.login-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4c5375;
+    cursor: pointer;
+}
+
+.login-enlace-olvide {
+    color: #0052cc;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-enlace-olvide:hover {
+    text-decoration: underline;
+}
+
+/* BOTÓN ENTRAR */
+.login-boton-entrar {
+    width: 100%;
+    height: 48px;
+    background-color: #0052cc; /* Azul rey de tu Figma */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    margin-bottom: 30px;
+}
+
+.login-boton-entrar:hover {
+    background-color: #0041a3;
+}
+
+.login-boton-entrar:disabled {
+    background-color: #a3c4f7;
+    cursor: not-allowed;
+}
+
+.login-soporte-texto {
+    font-size: 13px;
+    color: #6c7393;
+    text-align: center;
+    margin: 0;
+}
+
+.login-soporte-texto a {
+    color: #0052cc;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* RESPONSIVE PARA MÓVILES (Fase 4 - Buenas Prácticas) */
+@media (max-width: 768px) {
+    .login-tarjeta-contenedor {
+        flex-direction: column;
+        max-width: 440px;
+    }
+    .login-panel-izquierdo {
+        display: none; /* Oculta el panel azul en pantallas pequeñas para que no estorbe */
+    }
+    .login-panel-derecho {
+        padding: 35px 30px;
+    }
+}
