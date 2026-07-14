@@ -1,8 +1,4 @@
-/* ==========================================================================
-   ESTILOS EXCLUSIVOS DE LA PÁGINA DE INICIO (inicio.css)
-   ========================================================================== */
 
-/* Encabezado de bienvenida */
 .encabezado-pagina h1 {
     margin: 0;
     color: #171a2f;
@@ -16,7 +12,6 @@
     font-size: 15px;
 }
 
-/* Sección de Tarjetas de estadísticas */
 .tarjetas-estadisticas {
     margin-top: 28px;
     display: grid;
@@ -60,7 +55,6 @@
     font-weight: 700;
 }
 
-/* Tabla de registros recientes */
 .registros-recientes {
     margin-top: 28px;
     overflow: hidden;
@@ -98,7 +92,6 @@
     color: #1d2ebd;
 }
 
-/* Estructura en rejilla de la tabla */
 .fila {
     display: grid;
     grid-template-columns: 2.2fr 1.2fr 0.8fr 0.8fr;
@@ -127,7 +120,6 @@
     border-bottom: none;
 }
 
-/* Alineación de datos e imagen del producto */
 .datos-producto {
     display: flex;
     align-items: center;
@@ -156,9 +148,7 @@
     font-size: 11px;
 }
 
-/* ==========================================================================
-   BADGES DE ESTADO DEL STOCK (Colores semáforo adaptados para tu tienda)
-   ========================================================================== */
+
 .estado-disponible,
 .estado-poco-stock,
 .estado-agotado {
@@ -170,31 +160,27 @@
     text-align: center;
 }
 
-/* Disponible: Verde suave */
 .estado-disponible {
     background-color: #dcf5ef;
     color: #237b68;
 }
 
-/* Poco Stock: Naranja/Amarillo suave */
 .estado-poco-stock {
     background-color: #fef3c7;
     color: #d97706;
 }
 
-/* Agotado: Rojo suave */
 .estado-agotado {
     background-color: #fee2e2;
     color: #dc2626;
 }
 
 
-/* Fila especial para mensajes dentro de la tabla (Carga, Error o Vacío) */
 .fila-mensaje-tabla {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 120px; /* Le da una altura cómoda para que no se vea aplastado */
+    min-height: 120px;
     width: 100%;
     color: #65697a;
     font-size: 14px;
@@ -203,8 +189,7 @@
     background-color: #ffffff;
 }
 
-/* Variación por si quieres darle un toque rojo sutil al texto de error */
 .fila-mensaje-tabla.error {
     color: #dc2626;
-    background-color: #fff5f5; /* Un fondo rosa muy ligero de advertencia */
+    background-color: #fff5f5;
 }

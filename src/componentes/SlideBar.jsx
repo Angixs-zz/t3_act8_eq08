@@ -18,7 +18,6 @@ function SlideBar({
 
     return (
         <aside className="sidebar">
-            {/* 🟩 Contenedor superior para agrupar logo y menú */}
             <div className="sidebar-contenido-superior">
                 
                 {/* Encabezado con clases alineadas al CSS */}
@@ -37,7 +36,6 @@ function SlideBar({
                     </div>
                 </div>
 
-                {/* Menú de opciones */}
                 <nav className="sidebar-menu">
                     <button
                         type="button"

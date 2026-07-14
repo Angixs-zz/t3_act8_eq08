@@ -23,7 +23,6 @@ function PaginaLogin({ enviarLogin, cargando, error }) {
       return;
     }
 
-    // Enviamos los datos al método del componente padre
     enviarLogin(usuario, contrasenia);
   }
 

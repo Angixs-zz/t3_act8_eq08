@@ -10,7 +10,7 @@
     box-sizing: border-box;
 
 
-    position: relative; /* Cambiado de fixed a relative para que respete el flujo natural */
+    position: relative; 
     flex-shrink: 0;
 }
 
@@ -65,9 +65,7 @@
     color: #a7f3d0;
 }
 
-/* ==========================================================================
-   MENÚ DE NAVEGACIÓN Y BOTONES
-   ========================================================================== */
+
 .sidebar-menu {
     display: flex;
     flex-direction: column;

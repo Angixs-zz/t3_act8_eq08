@@ -79,7 +79,6 @@ function PaginaInicio() {
         </div>
         <p>Productos con poco stock</p>
         <h2>
-            {/* Misma lógica para el poco stock */}
             {cargando ? "..." : error !== "" ? "--" : productosPocoStock.length}
         </h2>
     </article>
@@ -99,28 +98,24 @@ function PaginaInicio() {
             <span>STOCK</span>
         </div>
 
-        {/* 1. MIENTRAS ESTÁ CARGANDO */}
         {cargando && (
             <div className="fila-mensaje-tabla cargando">
                 <span>Cargando los productos más recientes del servidor...</span>
             </div>
         )}
 
-        {/* 2. SI OCURRIÓ UN ERROR DE CONEXIÓN */}
         {!cargando && error !== "" && (
             <div className="fila-mensaje-tabla error">
-                <span>⚠️ Error al conectar con el servidor: {error}</span>
+                <span> Error al conectar con el servidor: {error}</span>
             </div>
         )}
 
-        {/* 3. SI LA LISTA DE PRODUCTOS LLEGA VACÍA */}
         {!cargando && error === "" && productosRecientes.length === 0 && (
             <div className="fila-mensaje-tabla vacio">
                 <span>No se encontraron productos registrados en la tienda.</span>
             </div>
         )}
 
-        {/* 4. CUANDO TODO SALE BIEN Y HAY DATOS */}
         {!cargando && error === "" && productosRecientes.map(function (producto) {
             return (
                 <div className="fila fila-registro" key={producto.id}>

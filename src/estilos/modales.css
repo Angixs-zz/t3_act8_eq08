@@ -203,7 +203,6 @@
     background-color: #dc2626;
 }
 
-/* Animaciones Fluidas al aparecer */
 @keyframes fadeInModal {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -215,7 +214,6 @@
 }
 
 
-/* Banner de validación de campos obligatorios */
 .banner-error-interno {
     background-color: #fef2f2;
     border-left: 4px solid #ef4444;
