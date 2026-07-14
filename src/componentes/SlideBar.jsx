@@ -1,12 +1,12 @@
-import React from "react";
-import { Home, Package, LogOut } from "lucide-react"; 
-import logoImg from "../assets/logoabarrotes.jpg"; 
-import "../estilos/sidebar.css"; 
+import { Home, Package, X } from "lucide-react";
+import logoImg from "../assets/logoabarrotes.jpg";
+import "../estilos/sidebar.css";
 
 function SlideBar({
     paginaActual,
     cambiarPagina,
-    cerrarSesion
+    sidebarAbierto,
+    cerrarSidebar
 }) {
     function irAInicio() {
         cambiarPagina("inicio");
@@ -17,23 +17,36 @@ function SlideBar({
     }
 
     return (
-        <aside className="sidebar">
+        <aside
+            className={
+                sidebarAbierto
+                    ? "sidebar sidebar-abierto"
+                    : "sidebar sidebar-oculto"
+            }
+        >
             <div className="sidebar-contenido-superior">
-                
-                {/* Encabezado con clases alineadas al CSS */}
                 <div className="sidebar-encabezado">
                     <div className="sidebar-logo-contenedor">
-                        <img 
-                            src={logoImg} 
-                            alt="Logo El mandadito" 
+                        <img
+                            src={logoImg}
+                            alt="Logo El Mandadito"
                             className="sidebar-logo-img"
                         />
                     </div>
 
                     <div className="sidebar-info-tienda">
-                        <h2>El mandadito</h2>
+                        <h2>El Mandadito</h2>
                         <p>Tienda de productos variados</p>
                     </div>
+
+                    <button
+                        type="button"
+                        className="sidebar-boton-cerrar"
+                        onClick={cerrarSidebar}
+                        title="Ocultar menú"
+                    >
+                        <X size={20} />
+                    </button>
                 </div>
 
                 <nav className="sidebar-menu">
@@ -49,6 +62,7 @@ function SlideBar({
                         <span className="sidebar-icono">
                             <Home size={18} />
                         </span>
+
                         Inicio
                     </button>
 
@@ -64,12 +78,11 @@ function SlideBar({
                         <span className="sidebar-icono">
                             <Package size={18} />
                         </span>
+
                         Productos
                     </button>
                 </nav>
             </div>
-
-           
         </aside>
     );
 }

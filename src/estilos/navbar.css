@@ -1,14 +1,45 @@
 .navbar {
+    min-height: 72px;
+    padding: 0 28px;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 12px 24px;
+    justify-content: space-between;
+
     background-color: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e2e8f0;
+
+    position: sticky;
+    top: 0;
+    z-index: 500;
 }
 
-.navbar-espaciador {
-    flex-grow: 1;
+.navbar-zona-izquierda {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-boton-menu {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    color: #0f3a20;
+
+    border: 1px solid #dce4df;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.navbar-boton-menu:hover {
+    background-color: #ecf7ef;
+    border-color: #0f3a20;
 }
 
 .navbar-usuario-contenedor {
@@ -27,7 +58,7 @@
 }
 
 .navbar-usuario:hover {
-    background-color: #f3f4f6; 
+    background-color: #f3f4f6;
 }
 
 .navbar-foto {
@@ -43,7 +74,7 @@
 }
 
 .navbar-flecha.rotar {
-    transform: rotate(180deg); 
+    transform: rotate(180deg);
 }
 
 .navbar-dropdown {
@@ -67,7 +98,7 @@
     background: none;
     border: none;
     padding: 12px 16px;
-    color: #ef4444; 
+    color: #ef4444;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
@@ -76,22 +107,22 @@
 }
 
 .btn-dropdown-logout:hover {
-    background-color: #16df8ff6; 
+    background-color: #16df8ff6;
 }
 
 
 .sistema .navbar-dropdown .boton-cerrar-sesion {
-    background: #5fbb68; 
+    background: #5fbb68;
     border: none;
-    color: #ffffff;       
+    color: #ffffff;
     display: flex;
     align-items: center;
     gap: 12px;
     width: 100%;
     padding: 10px 16px;
-    border-radius: 8px;  
+    border-radius: 8px;
     font-size: 0.95rem;
-    font-weight: 600;     
+    font-weight: 600;
     cursor: pointer;
     box-sizing: border-box;
     transition: all 0.2s ease;
@@ -100,7 +131,8 @@
 
 .boton-cerrar-sesion:hover {
     background-color: rgba(239, 68, 68, 0.1);
-    color: #ef4444; /* Rojo vibrante al pasar el cursor */
+    color: #ef4444;
+    /* Rojo vibrante al pasar el cursor */
 }
 
 
