@@ -1,25 +1,48 @@
-import React, { useState } from "react";
-import { LogOut, ChevronDown } from "lucide-react"; 
-import "../estilos/navbar.css"; // Asegúrate de vincular tu archivo CSS aquí
+import { useState } from "react";
+import { LogOut, ChevronDown, Menu } from "lucide-react";
+import "../estilos/navbar.css";
 
-function NavBar({ usuario, cerrarSesion }) {
-    // Estado para controlar si el menú de cerrar sesión está visible
+function NavBar({
+    usuario,
+    cerrarSesion,
+    alternarSidebar,
+    sidebarAbierto
+}) {
     const [mostrarMenu, setMostrarMenu] = useState(false);
 
-    function alternarMenu() {
-        setMostrarMenu(!mostrarMenu);
+    function alternarMenuUsuario() {
+        setMostrarMenu(function (estadoActual) {
+            return !estadoActual;
+        });
     }
 
     return (
         <header className="navbar">
-            <div className="navbar-espaciador"></div>
+            <div className="navbar-zona-izquierda">
+                <button
+                    type="button"
+                    className="navbar-boton-menu"
+                    onClick={alternarSidebar}
+                    title={
+                        sidebarAbierto
+                            ? "Ocultar menú"
+                            : "Mostrar menú"
+                    }
+                >
+                    <Menu size={22} />
+                </button>
+            </div>
 
             <div className="navbar-usuario-contenedor">
-                <div className="navbar-usuario" onClick={alternarMenu}>
+                <div
+                    className="navbar-usuario"
+                    onClick={alternarMenuUsuario}
+                >
                     <div className="navbar-datos">
                         <p className="navbar-nombre">
                             {usuario?.firstName} {usuario?.lastName}
                         </p>
+
                         <p className="navbar-cargo">
                             Administrador
                         </p>
@@ -30,8 +53,15 @@ function NavBar({ usuario, cerrarSesion }) {
                         alt="Foto del usuario"
                         className="navbar-foto"
                     />
-                    
-                    <ChevronDown size={16} className={`navbar-flecha ${mostrarMenu ? 'rotar' : ''}`} />
+
+                    <ChevronDown
+                        size={16}
+                        className={
+                            mostrarMenu
+                                ? "navbar-flecha rotar"
+                                : "navbar-flecha"
+                        }
+                    />
                 </div>
 
                 {mostrarMenu && (
@@ -39,11 +69,12 @@ function NavBar({ usuario, cerrarSesion }) {
                         <button
                             type="button"
                             className="boton-cerrar-sesion"
-                            onClick={cerrarSesion} 
+                            onClick={cerrarSesion}
                         >
                             <span className="sidebar-icono">
                                 <LogOut size={18} />
                             </span>
+
                             Cerrar sesión
                         </button>
                     </div>

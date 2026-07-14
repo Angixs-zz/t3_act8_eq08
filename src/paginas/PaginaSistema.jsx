@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import NavBar from "../componentes/NavBar";
 import SlideBar from "../componentes/SlideBar";
 import PaginaInicio from "./PaginaInicio";
-import "../estilos/sistema.css";
 import PaginaRegistros from "./PaginaRegistros";
+import "../estilos/sistema.css";
 
 function PaginaSistema({ usuario, cerrarSesion }) {
     const [paginaActual, setPaginaActual] = useState("inicio");
+    const [sidebarAbierto, setSidebarAbierto] = useState(true);
 
     function cambiarPagina(nuevaPagina) {
         setPaginaActual(nuevaPagina);
+    }
+
+    function alternarSidebar() {
+        setSidebarAbierto(function (estadoActual) {
+            return !estadoActual;
+        });
     }
 
     function mostrarPagina() {
@@ -29,13 +36,22 @@ function PaginaSistema({ usuario, cerrarSesion }) {
             <SlideBar
                 paginaActual={paginaActual}
                 cambiarPagina={cambiarPagina}
-                cerrarSesion={cerrarSesion}
+                sidebarAbierto={sidebarAbierto}
+                cerrarSidebar={alternarSidebar}
             />
 
-            <div className="sistema-contenido">
-                <NavBar 
-                    usuario={usuario} 
-                    cerrarSesion={cerrarSesion} 
+            <div
+                className={
+                    sidebarAbierto
+                        ? "sistema-contenido"
+                        : "sistema-contenido sidebar-cerrado"
+                }
+            >
+                <NavBar
+                    usuario={usuario}
+                    cerrarSesion={cerrarSesion}
+                    alternarSidebar={alternarSidebar}
+                    sidebarAbierto={sidebarAbierto}
                 />
 
                 <main className="contenido-principal">
