@@ -1,0 +1,487 @@
+
+.tabla-contenedor {
+    width: 100%;
+    overflow-x: auto; /* Scroll responsivo para celulares */
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0; /* Borde exterior que encierra la tabla */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    margin-top: 25px;
+}
+
+.tabla-registros {
+    width: 100%;
+    border-collapse: collapse; /* Une los bordes para que las líneas divisorias se vean perfectas */
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+
+.tabla-registros th {
+    background-color: #356e1e; /* Color base (un azul/morado elegante) */
+    color: #ffffff;            /* Texto blanco para que contraste */
+    font-weight: 600;
+    padding: 14px 16px;
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 0.5px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15); /* Líneas divisorias blancas sutiles entre columnas */
+}
+
+.tabla-registros th:last-child {
+    border-right: none; /* Quita la línea a la última columna de acciones */
+}
+
+
+.tabla-registros td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e2e8f0; /* Línea divisoria horizontal gris claro */
+    border-right: 1px solid #edf2f7;  /* Línea divisoria vertical entre columnas */
+    vertical-align: middle;
+    color: #2d3748;
+}
+
+/* Quita la línea vertical en el extremo derecho de la tabla */
+.tabla-registros td:last-child {
+    border-right: none;
+}
+
+/* Filas intercaladas (Efecto Cebra) para leer mejor los datos */
+.tabla-registros tbody tr:nth-child(even) {
+    background-color: #f8fafc; /* Un gris sumamente sutil para las filas pares */
+}
+
+/* Efecto Hover: Resalta la fila completa cuando pasas el mouse */
+.tabla-registros tbody tr:hover {
+    background-color: #f1f5f9;
+    cursor: pointer;
+}
+
+
+.producto-miniatura {
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+}
+
+.td-titulo {
+    color: #123006;
+}
+
+/* Etiqueta moderna para la categoría */
+.badge-categoria {
+    background-color: #e0f2fe;
+    color: #123006;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    display: inline-block;
+    border: 1px solid #bae6fd;
+}
+
+.td-precio {
+    font-weight: 700;
+    color: #123006;
+}
+
+.td-stock {
+    font-weight: 500;
+    color: #123006;
+}
+
+
+.td-acciones {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Este contenedor interno es el que alinea los botones uno al lado del otro */
+.contenedor-botones-acciones {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.btn-accion {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-editar {
+    background-color: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.btn-editar:hover {
+    background-color: #dcfce7;
+    box-shadow: 0 2px 6px rgba(22, 101, 52, 0.1);
+}
+
+.btn-eliminar {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fee2e2;
+}
+
+.btn-eliminar:hover {
+    background-color: #fee2e2;
+    box-shadow: 0 2px 6px rgba(153, 27, 27, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tabla-cargando-mensaje {
+    padding: 40px;
+    text-align: center;
+    color: #166534;
+    font-weight: 600;
+    font-size: 1.1rem;
+    background-color: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    margin-top: 25px;
+}
+
+
+.tabla-mensaje-estado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+    font-size: 1.05rem;
+    border: 1px solid #e2e8f0;
+}
+
+/* Diseño específico cuando está Cargando */
+.tabla-mensaje-estado.cargando {
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #166534;
+    font-weight: 600;
+    gap: 15px;
+}
+
+/* Diseño específico cuando ocurre un Error */
+.tabla-mensaje-estado.error {
+    background-color: #fef2f2;
+    border-color: #fca5a5;
+    color: #991b1b;
+    justify-content: flex-start;
+    gap: 15px;
+    padding: 20px 25px;
+}
+
+.icono-error {
+    font-size: 2rem;
+}
+
+.contenido-error h4 {
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.contenido-error p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #b91c1c;
+}
+
+
+
+
+/* Diseño específico cuando está Vacia */
+.tabla-mensaje-estado.vacia {
+    background-color: #f8fafc;
+    color: #64748b;
+    border-style: dashed;
+}
+
+/* Animación del Spinner circular */
+.spinner-carga {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4f46e5;
+    border-radius: 50%;
+    animation: girarSpinner 1s linear infinite;
+}
+
+@keyframes girarSpinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.icono-error-lucide {
+    color: #ef4444; /* Un rojo vibrante y limpio */
+    flex-shrink: 0; /* Evita que el icono se haga chiquito si el texto es largo */
+}
+
+
+/* Estilo para el icono de inventario vacío */
+.icono-vacio-lucide {
+    color: #94a3b8; /* Un gris pizarra suave */
+    flex-shrink: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contenedor-paginacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 24px;
+    background-color: #ffffff;
+    border: 1px solid #e2f0e2;
+    border-top: none; /* Se fusiona perfectamente al fondo de la tabla */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Área del Selector del Límite */
+.selector-limite {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #166534;
+    font-weight: 500;
+}
+
+.select-limite-registros {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #166534;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.select-limite-registros:focus {
+    border-color: #166534; /* Enfoque morado */
+}
+
+/* Bloque derecho con botones e información */
+.bloque-botones-paginacion {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.info-paginacion {
+    font-size: 0.9rem;
+    color: #166534;
+    font-weight: 500;
+}
+
+.info-paginacion span {
+    color: #166534;
+    font-weight: 700;
+}
+
+/* Botones de Paginación con Flechas */
+.btn-paginacion {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #ffffff;
+    color: #166534;
+    border: 1px solid #cbd5e1;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-paginacion:hover:not(:disabled) {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+    color: #166534;
+}
+
+.btn-paginacion:disabled {
+    background-color: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+
+
+
+
+.barra-filtros-contenedor {
+    display: flex;
+    gap: 16px;
+    background-color: #ffffff;
+    padding: 20px 24px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Flexibilidad para que la barra de búsqueda ocupe más espacio */
+.grupo-input-busqueda {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.grupo-select-categoria {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 200px;
+}
+
+/* Etiquetas de título arriba de los campos */
+.etiqueta-filtro {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Contenedor del Input que envuelve la lupa */
+.input-con-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.icono-lupa-busqueda {
+    position: absolute;
+    left: 12px;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+/* Estilo para la caja de texto de búsqueda */
+.input-filtro-texto {
+    width: 100%;
+    padding: 10px 12px 10px 38px; /* Espacio extra a la izquierda para que no tape la lupa */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+.input-filtro-texto:focus {
+    background-color: #ffffff;
+    border-color: #4f46e5; /* Borde morado de enfoque */
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Estilo para el selector desplegable de categorías */
+.select-filtro-opciones {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    background-color: #f8fafc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-filtro-opciones:focus {
+    background-color: #ffffff;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+
+
+
+.linea-conteo-registros {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 4px;
+    margin-bottom: 12px; /* Espacio para que no se pegue a la tabla */
+}
+
+.conteo-texto {
+    font-size: 0.95rem;
+    color: #475569; /* Gris oscuro elegante */
+    font-weight: 500;
+    margin: 0; /* Quita los márgenes por defecto del <p> para que no se descuadre */
+}
+
+/* Resalta el número en negrita para que se note el cambio al filtrar */
+.conteo-texto span {
+    font-weight: 700;
+    color: #1e293b; 
+}
+
+
+
+.btn-accion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; /* Espacio perfecto entre el icono y la palabra */
+}
+
+.icono-btn {
+    display: inline-block;
+    flex-shrink: 0;
+}

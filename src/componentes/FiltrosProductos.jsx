@@ -1,3 +1,7 @@
+import React from "react";
+import { Search } from "lucide-react"; 
+import "../estilos/registros.css";
+
 function FiltrosProductos({
     busqueda,
     categoriaSeleccionada,
@@ -6,35 +10,36 @@ function FiltrosProductos({
     cambiarCategoria
 }) {
     return (
-        <div className="filtros-productos">
-            <div className="grupo-filtro">
-                <label htmlFor="busqueda">
+        <div className="barra-filtros-contenedor">
+            <div className="grupo-input-busqueda">
+                <label htmlFor="busqueda" className="etiqueta-filtro">
                     Buscar producto
                 </label>
-
-                <input
-                    id="busqueda"
-                    type="text"
-                    placeholder="Buscar por nombre"
-                    value={busqueda}
-                    onChange={cambiarBusqueda}
-                />
+                <div className="input-con-icono">
+                    <Search size={18} className="icono-lupa-busqueda" />
+                    <input
+                        id="busqueda"
+                        type="text"
+                        className="input-filtro-texto"
+                        placeholder="Escribe el nombre de un producto..."
+                        value={busqueda}
+                        onChange={cambiarBusqueda}
+                    />
+                </div>
             </div>
 
-            <div className="grupo-filtro">
-                <label htmlFor="categoria">
-                    Categoría
+            {/* Filtro por Categorías */}
+            <div className="grupo-select-categoria">
+                <label htmlFor="categoria" className="etiqueta-filtro">
+                    Filtrar por categoría
                 </label>
-
                 <select
                     id="categoria"
+                    className="select-filtro-opciones"
                     value={categoriaSeleccionada}
                     onChange={cambiarCategoria}
                 >
-                    <option value="">
-                        Todas las categorías
-                    </option>
-
+                    <option value="">Todas las categorías</option>
                     {categorias.map(function (categoria) {
                         return (
                             <option

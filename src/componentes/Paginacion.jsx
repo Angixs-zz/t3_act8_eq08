@@ -1,3 +1,7 @@
+import React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react"; 
+import "../estilos/registros.css";
+
 function Paginacion({
     paginaActual,
     totalPaginas,
@@ -6,15 +10,15 @@ function Paginacion({
     paginaSiguiente,
     cambiarLimite
 }) {
-    return (
-        <div className="paginacion">
-            <div className="selector-limite">
-                <label htmlFor="limite">
-                    Registros por página
-                </label>
+    const ultimaPagina = totalPaginas > 0 ? totalPaginas : 1;
 
+    return (
+        <div className="contenedor-paginacion">
+            <div className="selector-limite">
+                <label htmlFor="limite">Registros por página:</label>
                 <select
                     id="limite"
+                    className="select-limite-registros"
                     value={limite}
                     onChange={cambiarLimite}
                 >
@@ -25,28 +29,31 @@ function Paginacion({
                 </select>
             </div>
 
-            <div className="controles-paginacion">
+            <div className="bloque-botones-paginacion">
                 <button
                     type="button"
+                    className="btn-paginacion"
                     onClick={paginaAnterior}
                     disabled={paginaActual === 1}
+                    title="Página anterior"
                 >
-                    Anterior
+                    <ChevronLeft size={18} />
+                    <span>Anterior</span>
                 </button>
 
-                <span>
-                    Página {paginaActual} de {totalPaginas}
-                </span>
+                <div className="info-paginacion">
+                    Página <span>{paginaActual}</span> de <span>{ultimaPagina}</span>
+                </div>
 
                 <button
                     type="button"
+                    className="btn-paginacion"
                     onClick={paginaSiguiente}
-                    disabled={
-                        paginaActual === totalPaginas ||
-                        totalPaginas === 0
-                    }
+                    disabled={paginaActual === ultimaPagina || totalPaginas === 0}
+                    title="Página siguiente"
                 >
-                    Siguiente
+                    <span>Siguiente</span>
+                    <ChevronRight size={18} />
                 </button>
             </div>
         </div>
