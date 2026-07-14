@@ -56,16 +56,35 @@
 }
 
 .modal-cuerpo {
-    padding: 24px;
+   
+    padding: 20px 24px; 
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 16px; 
+    box-sizing: border-box; 
 }
 
 .grupo-formulario {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 6px;
+}
+
+.grupo-formulario:has(#imagen-file) {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+}
+
+.input-file-modal {
+    padding: 10px 12px;
+    background-color: #f9fafb;
+    cursor: pointer;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box; 
 }
 
 .grupo-formulario label {
@@ -272,4 +291,20 @@
 .select-modal {
     cursor: pointer;
     padding-right: 24px;
+}
+
+
+.input-file-modal {
+    padding: 8px 12px;
+    background-color: #f9fafb;
+    cursor: pointer;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+.archivo-seleccionado {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-top: 6px;
 }

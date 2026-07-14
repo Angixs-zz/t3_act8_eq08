@@ -3,13 +3,15 @@ import {
     obtenerProductos,
     obtenerCategorias,
     eliminarProducto,
-    editarProducto
+    editarProducto,
+    agregarProducto
 } from "../servicios/servicioProductos";
 import Paginacion from "../componentes/Paginacion";
 import FiltrosProductos from "../componentes/FiltrosProductos";
 import TablaProductos from "../componentes/TablaProductos";
 import ModalEditar from "../componentes/ModalEditar";
 import ModalEliminar from "../componentes/ModalEliminar";
+import ModalAgregar from "../componentes/ModalAgregar";
 
 function PaginaRegistros() {
     const [productos, setProductos] = useState([]);
@@ -23,6 +25,7 @@ function PaginaRegistros() {
     const [tituloEditar, setTituloEditar] = useState("");
     const [precioEditar, setPrecioEditar] = useState("");
     const [stockEditar, setStockEditar] = useState("");
+    const [mostrarModalAgregar, setMostrarModalAgregar] = useState(false);
     const parametrosIniciales = new URLSearchParams(
         window.location.search
     );
@@ -229,25 +232,31 @@ function PaginaRegistros() {
         setProductoEliminar(producto);
     }
 
-    async function confirmarEliminacion() {
-        if (productoEliminar === null) {
-            return;
-        }
-
-        try {
-            await eliminarProducto(productoEliminar.id);
-
-            setProductos(function (productosActuales) {
-                return productosActuales.filter(function (producto) {
-                    return producto.id !== productoEliminar.id;
-                });
-            });
-            
-           
-        } catch (error) {
-            throw error;
-        }
+   async function confirmarEliminacion() {
+    if (productoEliminar === null) {
+        return;
     }
+
+    try {
+        await eliminarProducto(productoEliminar.id);
+
+        setProductos(function (productosActuales) {
+            return productosActuales.filter(function (producto) {
+                return producto.id !== productoEliminar.id;
+            });
+        });
+        
+    } catch (error) {
+        console.warn("API de pruebas ignorada para producto local:", error.message);
+        
+    
+        setProductos(function (productosActuales) {
+            return productosActuales.filter(function (producto) {
+                return producto.title !== productoEliminar.title;
+            });
+        });
+    }
+}
 
 
    async function guardarCambiosProducto() {
@@ -282,6 +291,22 @@ function PaginaRegistros() {
 }
 
 
+async function guardarNuevoProducto(nuevoProducto) {
+    try {
+        const productoCreado = await agregarProducto(nuevoProducto);
+
+        setProductos(function (productosActuales) {
+            return [productoCreado, ...productosActuales];
+        });
+        
+       
+    } catch (error) {
+        
+        throw error;
+    }
+}
+
+
     return (
         <section>
             <h1>Gestión de productos</h1>
@@ -292,7 +317,21 @@ function PaginaRegistros() {
                 categorias={categorias}
                 cambiarBusqueda={cambiarBusqueda}
                 cambiarCategoria={cambiarCategoria}
+               onAgregarClick={function () {
+        setMostrarModalAgregar(true); 
+    }}
             />
+
+
+            {mostrarModalAgregar && (
+                <ModalAgregar
+                    categorias={categorias}
+                    onCerrar={function () {
+                        setMostrarModalAgregar(false);
+                    }}
+                    onAgregar={guardarNuevoProducto}
+                />
+            )}
 
                    
             <div className="linea-conteo-registros">
@@ -346,6 +385,8 @@ function PaginaRegistros() {
     );
 
 
+
+    
 
   
 }
