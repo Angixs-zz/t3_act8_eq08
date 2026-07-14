@@ -214,7 +214,7 @@
 }
 
 .login-boton-entrar:disabled {
-    background-color: #a3c4f7;
+    background-color: #6aba4a;
     cursor: not-allowed;
 }
 
@@ -263,3 +263,5 @@
 .login-boton-ojo:hover .icono-ojo-lucide {
   color: #333333; 
 }
+
+
