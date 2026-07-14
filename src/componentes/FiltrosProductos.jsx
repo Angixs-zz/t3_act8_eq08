@@ -1,5 +1,5 @@
 import React from "react";
-import { Search } from "lucide-react"; 
+import { Search, Plus } from "lucide-react"; // Importamos Plus también
 import "../estilos/registros.css";
 
 function FiltrosProductos({
@@ -7,7 +7,8 @@ function FiltrosProductos({
     categoriaSeleccionada,
     categorias,
     cambiarBusqueda,
-    cambiarCategoria
+    cambiarCategoria,
+    onAgregarClick // 👈 Nueva prop para activar la apertura del modal
 }) {
     return (
         <div className="barra-filtros-contenedor">
@@ -52,6 +53,16 @@ function FiltrosProductos({
                     })}
                 </select>
             </div>
+
+            {/* 🟩 BOTÓN DE AGREGAR INTEGRADO DE FORMA LIMPIA */}
+            <button
+                type="button"
+                className="btn-agregar-principal"
+                onClick={onAgregarClick}
+            >
+                <Plus size={18} strokeWidth={2.5} />
+                <span>Agregar Producto</span>
+            </button>
         </div>
     );
 }

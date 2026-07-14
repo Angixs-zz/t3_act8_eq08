@@ -485,3 +485,33 @@
     display: inline-block;
     flex-shrink: 0;
 }
+
+
+.barra-filtros-contenedor {
+    display: flex;
+    align-items: flex-end; /* Alinea los inputs y el botón por la parte inferior */
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.btn-agregar-principal {
+    margin-left: auto; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #22c55e;
+    color: #ffffff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-agregar-principal:hover {
+    background-color: #16a34a;
+}
