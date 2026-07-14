@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { obtenerProductos } from "../servicios/servicioProductos";
+import { Package, AlertTriangle } from "lucide-react";
+import "../estilos/inicio.css"; 
 
 function PaginaInicio() {
     const [productos, setProductos] = useState([]);
@@ -16,7 +18,6 @@ function PaginaInicio() {
             setError("");
 
             const productosObtenidos = await obtenerProductos();
-
             setProductos(productosObtenidos);
         } catch (error) {
             setError(error.message);
@@ -35,11 +36,9 @@ function PaginaInicio() {
         if (stock === 0) {
             return "Agotado";
         }
-
         if (stock <= 10) {
             return "Poco stock";
         }
-
         return "Disponible";
     }
 
@@ -47,11 +46,9 @@ function PaginaInicio() {
         if (stock === 0) {
             return "estado-agotado";
         }
-
         if (stock <= 10) {
             return "estado-poco-stock";
         }
-
         return "estado-disponible";
     }
 
@@ -59,111 +56,98 @@ function PaginaInicio() {
         <section className="pagina-inicio">
             <div className="encabezado-pagina">
                 <h1>Administración de tienda</h1>
-
                 <p>
                     Bienvenido al sistema de administración de El Mandadito.
                     Aquí tienes un resumen del inventario actual.
                 </p>
             </div>
 
-            <div className="tarjetas-estadisticas">
-                <article className="tarjeta-estadistica">
-                    <div className="tarjeta-icono">
-                        📦
-                    </div>
+                    <div className="tarjetas-estadisticas">
+    <article className="tarjeta-estadistica">
+        <div className="tarjeta-icono">
+            <Package size={20} />
+        </div>
+        <p>Total de productos</p>
+                <h2>
+            {cargando ? "..." : error ? "--" : productos.length}
+        </h2>
+    </article>
 
-                    <p>Total de productos</p>
-                    <h2>{productos.length}</h2>
-                </article>
+    <article className="tarjeta-estadistica">
+        <div className="tarjeta-icono icono-alerta">
+            <AlertTriangle size={20} />
+        </div>
+        <p>Productos con poco stock</p>
+        <h2>
+            {/* Misma lógica para el poco stock */}
+            {cargando ? "..." : error !== "" ? "--" : productosPocoStock.length}
+        </h2>
+    </article>
+</div>
+           <section className="registros-recientes">
+    <div className="encabezado-registros">
+        <h2>Productos recientes</h2>
+        <button type="button">Ver todos</button>
+    </div>
 
-                <article className="tarjeta-estadistica">
-                    <div className="tarjeta-icono">
-                        ⚠️
-                    </div>
+    <div className="tabla-recientes">
+        {/* El encabezado siempre se queda visible para mantener la estructura */}
+        <div className="fila encabezado-tabla">
+            <span>PRODUCTO</span>
+            <span>CATEGORÍA</span>
+            <span>PRECIO</span>
+            <span>STOCK</span>
+        </div>
 
-                    <p>Productos con poco stock</p>
-                    <h2>{productosPocoStock.length}</h2>
-                </article>
+        {/* 1. MIENTRAS ESTÁ CARGANDO */}
+        {cargando && (
+            <div className="fila-mensaje-tabla cargando">
+                <span>Cargando los productos más recientes del servidor...</span>
             </div>
+        )}
 
-            <section className="registros-recientes">
-                <div className="encabezado-registros">
-                    <h2>Productos recientes</h2>
+        {/* 2. SI OCURRIÓ UN ERROR DE CONEXIÓN */}
+        {!cargando && error !== "" && (
+            <div className="fila-mensaje-tabla error">
+                <span>⚠️ Error al conectar con el servidor: {error}</span>
+            </div>
+        )}
 
-                    <button type="button">
-                        Ver todos
-                    </button>
-                </div>
+        {/* 3. SI LA LISTA DE PRODUCTOS LLEGA VACÍA */}
+        {!cargando && error === "" && productosRecientes.length === 0 && (
+            <div className="fila-mensaje-tabla vacio">
+                <span>No se encontraron productos registrados en la tienda.</span>
+            </div>
+        )}
 
-                {cargando && (
-                    <p className="mensaje-tabla">
-                        Cargando productos...
-                    </p>
-                )}
-
-                {error !== "" && (
-                    <p className="mensaje-error">
-                        {error}
-                    </p>
-                )}
-
-                {!cargando && error === "" && (
-                    <div className="tabla-recientes">
-                        <div className="fila encabezado-tabla">
-                            <span>PRODUCTO</span>
-                            <span>CATEGORÍA</span>
-                            <span>PRECIO</span>
-                            <span>STOCK</span>
+        {/* 4. CUANDO TODO SALE BIEN Y HAY DATOS */}
+        {!cargando && error === "" && productosRecientes.map(function (producto) {
+            return (
+                <div className="fila fila-registro" key={producto.id}>
+                    <div className="datos-producto">
+                        <img
+                            className="imagen-producto-inicio"
+                            src={producto.thumbnail}
+                            alt={producto.title}
+                        />
+                        <div>
+                            <strong>{producto.title}</strong>
+                            <small>ID: {producto.id}</small>
                         </div>
-
-                        {productosRecientes.map(function (producto) {
-                            return (
-                                <div
-                                    className="fila fila-registro"
-                                    key={producto.id}
-                                >
-                                    <div className="datos-producto">
-                                        <img
-                                            className="imagen-producto-inicio"
-                                            src={producto.thumbnail}
-                                            alt={producto.title}
-                                        />
-
-                                        <div>
-                                            <strong>
-                                                {producto.title}
-                                            </strong>
-
-                                            <small>
-                                                ID: {producto.id}
-                                            </small>
-                                        </div>
-                                    </div>
-
-                                    <span>
-                                        {producto.category}
-                                    </span>
-
-                                    <span>
-                                        ${producto.price.toFixed(2)}
-                                    </span>
-
-                                    <span
-                                        className={obtenerClaseEstado(
-                                            producto.stock
-                                        )}
-                                    >
-                                        {obtenerEstadoStock(
-                                            producto.stock
-                                        )}
-                                    </span>
-                                </div>
-                            );
-                        })}
                     </div>
-                )}
-            </section>
-        </section>
+
+                    <span>{producto.category}</span>
+                    <span>${producto.price.toFixed(2)}</span>
+
+                    <span className={obtenerClaseEstado(producto.stock)}>
+                        {obtenerEstadoStock(producto.stock)}
+                    </span>
+                </div>
+            );
+        })}
+    </div>
+</section>
+</section>
     );
 }
 

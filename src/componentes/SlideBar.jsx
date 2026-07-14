@@ -1,3 +1,8 @@
+import React from "react";
+import { Home, Package, LogOut } from "lucide-react"; 
+import logoImg from "../assets/logoabarrotes.jpg"; 
+import "../estilos/sidebar.css"; 
+
 function SlideBar({
     paginaActual,
     cambiarPagina,
@@ -13,18 +18,26 @@ function SlideBar({
 
     return (
         <aside className="sidebar">
-            <div>
+            {/* 🟩 Contenedor superior para agrupar logo y menú */}
+            <div className="sidebar-contenido-superior">
+                
+                {/* Encabezado con clases alineadas al CSS */}
                 <div className="sidebar-encabezado">
-                    <div className="sidebar-logo">
-                        LOGO
+                    <div className="sidebar-logo-contenedor">
+                        <img 
+                            src={logoImg} 
+                            alt="Logo El mandadito" 
+                            className="sidebar-logo-img"
+                        />
                     </div>
 
-                    <div>
+                    <div className="sidebar-info-tienda">
                         <h2>El mandadito</h2>
                         <p>Tienda de productos variados</p>
                     </div>
                 </div>
 
+                {/* Menú de opciones */}
                 <nav className="sidebar-menu">
                     <button
                         type="button"
@@ -35,7 +48,9 @@ function SlideBar({
                         }
                         onClick={irAInicio}
                     >
-                        <span className="sidebar-icono">I</span>
+                        <span className="sidebar-icono">
+                            <Home size={18} />
+                        </span>
                         Inicio
                     </button>
 
@@ -48,20 +63,15 @@ function SlideBar({
                         }
                         onClick={irARegistros}
                     >
-                        <span className="sidebar-icono">I</span>
+                        <span className="sidebar-icono">
+                            <Package size={18} />
+                        </span>
                         Productos
                     </button>
                 </nav>
             </div>
 
-            <button
-                type="button"
-                className="boton-cerrar-sesion"
-                onClick={cerrarSesion}
-            >
-                <span>↪</span>
-                Cerrar sesión
-            </button>
+           
         </aside>
     );
 }

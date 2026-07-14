@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import NavBar from "../componentes/NavBar";
 import SlideBar from "../componentes/SlideBar";
 import PaginaInicio from "./PaginaInicio";
@@ -33,7 +33,10 @@ function PaginaSistema({ usuario, cerrarSesion }) {
             />
 
             <div className="sistema-contenido">
-                <NavBar usuario={usuario} />
+                <NavBar 
+                    usuario={usuario} 
+                    cerrarSesion={cerrarSesion} 
+                />
 
                 <main className="contenido-principal">
                     {mostrarPagina()}

@@ -1,0 +1,136 @@
+/* Alinea el contenido a la derecha al quitar el buscador */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-espaciador {
+    flex-grow: 1;
+}
+
+.navbar-usuario-contenedor {
+    position: relative;
+}
+
+.navbar-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.navbar-usuario:hover {
+    background-color: #f3f4f6; /* Sutil efecto al pasar el mouse */
+}
+
+.navbar-foto {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navbar-flecha {
+    color: #6b7280;
+    transition: transform 0.2s ease;
+}
+
+.navbar-flecha.rotar {
+    transform: rotate(180deg); 
+}
+
+.navbar-dropdown {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    min-width: 150px;
+    z-index: 200;
+    overflow: hidden;
+}
+
+.btn-dropdown-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    color: #ef4444; 
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.btn-dropdown-logout:hover {
+    background-color: #16df8ff6; 
+}
+
+
+.sistema .navbar-dropdown .boton-cerrar-sesion {
+    background: #5fbb68; 
+    border: none;
+    color: #ffffff;       
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 8px;  
+    font-size: 0.95rem;
+    font-weight: 600;     
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+
+/* Efecto Hover del botón Cerrar Sesión */
+.boton-cerrar-sesion:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444; /* Rojo vibrante al pasar el cursor */
+}
+
+
+.navbar-datos {
+    text-align: right;
+}
+
+.navbar-datos p {
+    margin: 0;
+}
+
+
+.navbar-nombre {
+    color: #202338;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.navbar-cargo {
+    margin-top: 3px !important;
+    color: #5e6274;
+    font-size: 12px;
+}
+
+.navbar-foto {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #4051dd;
+    border-radius: 50%;
+    object-fit: cover;
+}
