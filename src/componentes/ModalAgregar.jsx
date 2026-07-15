@@ -12,19 +12,59 @@ function ModalAgregar({ categorias, onCerrar, onAgregar }) {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
     const [imagen, setImagen] = useState(null);
 
-    function manejarValidacion() {
-        if (titulo.trim() === "" || precio === "" || stock === "" || categoriaSeleccionada === "") {
-            setErrorInterno("Todos los campos son obligatorios, incluyendo la categoría.");
-            return;
+        function manejarValidacion() {
+            const tituloLimpio = titulo.trim();
+            const precioNumero = Number(precio);
+            const stockNumero = Number(stock);
+
+            if (
+                tituloLimpio === "" ||
+                precio === "" ||
+                stock === "" ||
+                categoriaSeleccionada === ""
+            ) {
+                setErrorInterno("Todos los campos son obligatorios.");
+                return;
+            }
+
+            if (tituloLimpio.length < 3) {
+                setErrorInterno("El nombre debe tener al menos 3 caracteres.");
+                return;
+            }
+
+            if (tituloLimpio.length > 80) {
+                setErrorInterno("El nombre no puede tener más de 80 caracteres.");
+                return;
+            }
+
+            if (!Number.isFinite(precioNumero) || precioNumero <= 0) {
+                setErrorInterno("El precio debe ser mayor que cero.");
+                return;
+            }
+
+            if (precioNumero > 1000000) {
+                setErrorInterno("El precio ingresado es demasiado alto.");
+                return;
+            }
+
+            if (!Number.isInteger(stockNumero) || stockNumero < 0) {
+                setErrorInterno("El stock debe ser un número entero mayor o igual a cero.");
+                return;
+            }
+
+            if (stockNumero > 100000) {
+                setErrorInterno("El stock ingresado es demasiado alto.");
+                return;
+            }
+
+            setErrorInterno("");
+            setPaso("confirmando");
         }
-        setErrorInterno("");
-        setPaso("confirmando");
-    }
 
     async function manejarConfirmacionReal() {
         try {
             const nuevoProducto = {
-                title: titulo,
+                title: titulo.trim(),
                 price: Number(precio),
                 stock: Number(stock),
                 category: categoriaSeleccionada,
@@ -79,23 +119,27 @@ function ModalAgregar({ categorias, onCerrar, onAgregar }) {
                                     <input
                                         id="precio"
                                         type="number"
+                                        min="0.01"
+                                        step="0.01"
+                                        max="1000000"
                                         className="input-modal"
-                                        placeholder="0.00"
                                         value={precio}
-                                        onChange={(e) => setPrecio(e.target.value)}
+                                        onChange={(evento) => setPrecio(evento.target.value)}
                                     />
                                 </div>
 
                                 <div className="grupo-formulario">
                                     <label htmlFor="stock">Stock / Existencias</label>
                                     <input
-                                        id="stock"
-                                        type="number"
-                                        className="input-modal"
-                                        placeholder="0"
-                                        value={stock}
-                                        onChange={(e) => setStock(e.target.value)}
-                                    />
+                                    id="stock"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    max="100000"
+                                    className="input-modal"
+                                    value={stock}
+                                    onChange={(evento) => setStock(evento.target.value)}
+                                />
                                 </div>
                             </div>
 

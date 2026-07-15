@@ -30,14 +30,53 @@ useEffect(() => {
 
     if (!producto) return null;
 
-    function manejarValidacion() {
-        if (tituloEditar.trim() === "" || precioEditar === "" || stockEditar === "") {
-            setErrorInterno("Todos los campos son obligatorios.");
-            return;
-        }
-        setErrorInterno("");
-        setPaso("confirmando"); 
+   function manejarValidacion() {
+    const tituloLimpio = tituloEditar.trim();
+    const precioNumero = Number(precioEditar);
+    const stockNumero = Number(stockEditar);
+
+    if (
+        tituloLimpio === "" ||
+        precioEditar === "" ||
+        stockEditar === ""
+    ) {
+        setErrorInterno("Todos los campos son obligatorios.");
+        return;
     }
+
+    if (tituloLimpio.length < 3) {
+        setErrorInterno("El nombre debe tener al menos 3 caracteres.");
+        return;
+    }
+
+    if (tituloLimpio.length > 80) {
+        setErrorInterno("El nombre no puede tener más de 80 caracteres.");
+        return;
+    }
+
+    if (!Number.isFinite(precioNumero) || precioNumero <= 0) {
+        setErrorInterno("El precio debe ser mayor que cero.");
+        return;
+    }
+
+    if (precioNumero > 1000000) {
+        setErrorInterno("El precio ingresado es demasiado alto.");
+        return;
+    }
+
+    if (!Number.isInteger(stockNumero) || stockNumero < 0) {
+        setErrorInterno("El stock debe ser un número entero mayor o igual a cero.");
+        return;
+    }
+
+    if (stockNumero > 100000) {
+        setErrorInterno("El stock ingresado es demasiado alto.");
+        return;
+    }
+
+    setErrorInterno("");
+    setPaso("confirmando");
+}
 
     async function manejarConfirmacionReal() {
         try {
@@ -84,24 +123,35 @@ useEffect(() => {
                             <div className="fila-formulario-doble">
                                 <div className="grupo-formulario">
                                     <label htmlFor="precioEditar">Precio ($)</label>
+                                    
+                                    
+                                    {/* Input de Precio */}
                                     <input
                                         id="precioEditar"
                                         type="number"
+                                        min="0.01"
+                                        step="0.01"
+                                        max="1000000"
                                         className="input-modal"
                                         value={precioEditar}
-                                        onChange={(e) => setPrecioEditar(e.target.value)}
+                                        onChange={(evento) => setPrecioEditar(evento.target.value)}
                                     />
+
+
                                 </div>
 
                                 <div className="grupo-formulario">
                                     <label htmlFor="stockEditar">Stock / Existencias</label>
                                     <input
-                                        id="stockEditar"
-                                        type="number"
-                                        className="input-modal"
-                                        value={stockEditar}
-                                        onChange={(e) => setStockEditar(e.target.value)}
-                                    />
+                                    id="stockEditar"
+                                    type="number"
+                                    min="0"
+                                    step="1"
+                                    max="100000"
+                                    className="input-modal"
+                                    value={stockEditar}
+                                    onChange={(evento) => setStockEditar(evento.target.value)}
+                                />
                                 </div>
                             </div>
                         </div>

@@ -232,48 +232,46 @@ function PaginaRegistros() {
         setProductoEliminar(producto);
     }
 
-   async function confirmarEliminacion() {
-    if (productoEliminar === null) {
-        return;
-    }
 
-    try {
-        await eliminarProducto(productoEliminar.id);
 
-        setProductos(function (productosActuales) {
-            return productosActuales.filter(function (producto) {
-                return producto.id !== productoEliminar.id;
-            });
-        });
-        
-    } catch (error) {
-        console.warn("API de pruebas ignorada para producto local:", error.message);
-        
-    
-        setProductos(function (productosActuales) {
-            return productosActuales.filter(function (producto) {
-                return producto.title !== productoEliminar.title;
-            });
-        });
-    }
+
+async function guardarNuevoProducto(nuevoProducto) {
+    const productoCreado = await agregarProducto(nuevoProducto);
+
+    const productoLocal = {
+        ...productoCreado,
+        esLocal: true 
+    };
+
+    setProductos(function (productosActuales) {
+        return [productoLocal, ...productosActuales];
+    });
 }
 
-
-   async function guardarCambiosProducto() {
+async function guardarCambiosProducto() {
     if (productoEditar === null) {
         return;
     }
 
     const datosActualizados = {
-        title: tituloEditar,
+        title: tituloEditar.trim(),
         price: Number(precioEditar),
         stock: Number(stockEditar)
     };
 
-    const productoActualizado = await editarProducto(
-        productoEditar.id,
-        datosActualizados
-    );
+    let productoActualizado;
+
+    try {
+        productoActualizado = await editarProducto(
+            productoEditar.id,
+            datosActualizados
+        );
+    } catch (error) {
+        if (!productoEditar.esLocal) {
+            throw error;
+        }
+        productoActualizado = datosActualizados;
+    }
 
     setProductos(function (productosActuales) {
         return productosActuales.map(function (producto) {
@@ -286,26 +284,27 @@ function PaginaRegistros() {
             return producto;
         });
     });
-
-  
 }
 
-
-async function guardarNuevoProducto(nuevoProducto) {
-    try {
-        const productoCreado = await agregarProducto(nuevoProducto);
-
-        setProductos(function (productosActuales) {
-            return [productoCreado, ...productosActuales];
-        });
-        
-       
-    } catch (error) {
-        
-        throw error;
+async function confirmarEliminacion() {
+    if (productoEliminar === null) {
+        return;
     }
-}
 
+    try {
+        await eliminarProducto(productoEliminar.id);
+    } catch (error) {
+        if (!productoEliminar.esLocal) {
+            throw error;
+        }
+    }
+
+    setProductos(function (productosActuales) {
+        return productosActuales.filter(function (producto) {
+            return producto.id !== productoEliminar.id;
+        });
+    });
+}
 
     return (
         <section>
