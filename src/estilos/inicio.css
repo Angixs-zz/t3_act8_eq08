@@ -24,7 +24,7 @@
     padding: 24px;
     border: 1px solid #020202;
     border-radius: 12px;
-    background-color: #5fbb68;
+    background-color: #356e1e;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
@@ -36,21 +36,21 @@
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    background-color: #f1f1ff;
+    background-color: #e1e2e0;
     color: #4351df;
     font-size: 18px;
 }
 
 .tarjeta-estadistica p {
     margin: 0 0 5px;
-    color: #000000;
+    color: #ffffff;
     font-size: 13px;
     font-weight: bold;
 }
 
 .tarjeta-estadistica h2 {
     margin: 0;
-    color: #1b1f34;
+    color: #ffffff;
     font-size: 26px;
     font-weight: 700;
 }
@@ -92,8 +92,8 @@
 .encabezado-tabla {
     min-height: 44px;
     padding: 0 22px;
-    background-color: #5fbb68;
-    color: #070707;
+    background-color: #356e1e;
+    color: #ffffff;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.5px;
