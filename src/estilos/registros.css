@@ -1,57 +1,54 @@
 
 .tabla-contenedor {
     width: 100%;
-    overflow-x: auto; /* Scroll responsivo para celulares */
+    overflow-x: auto; 
     background-color: #ffffff;
     border-radius: 10px;
-    border: 1px solid #e2e8f0; /* Borde exterior que encierra la tabla */
+    border: 1px solid #e2e8f0; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     margin-top: 25px;
 }
 
 .tabla-registros {
     width: 100%;
-    border-collapse: collapse; /* Une los bordes para que las líneas divisorias se vean perfectas */
+    border-collapse: collapse; 
     text-align: left;
     font-size: 0.95rem;
 }
 
 
 .tabla-registros th {
-    background-color: #356e1e; /* Color base (un azul/morado elegante) */
-    color: #ffffff;            /* Texto blanco para que contraste */
+    background-color: #356e1e; 
+    color: #ffffff;           
     font-weight: 600;
     padding: 14px 16px;
     text-transform: uppercase;
     font-size: 0.82rem;
     letter-spacing: 0.5px;
-    border-right: 1px solid rgba(255, 255, 255, 0.15); /* Líneas divisorias blancas sutiles entre columnas */
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .tabla-registros th:last-child {
-    border-right: none; /* Quita la línea a la última columna de acciones */
+    border-right: none; 
 }
 
 
 .tabla-registros td {
     padding: 14px 16px;
-    border-bottom: 1px solid #e2e8f0; /* Línea divisoria horizontal gris claro */
-    border-right: 1px solid #edf2f7;  /* Línea divisoria vertical entre columnas */
+    border-bottom: 1px solid #e2e8f0; 
+    border-right: 1px solid #edf2f7; 
     vertical-align: middle;
     color: #2d3748;
 }
 
-/* Quita la línea vertical en el extremo derecho de la tabla */
 .tabla-registros td:last-child {
     border-right: none;
 }
 
-/* Filas intercaladas (Efecto Cebra) para leer mejor los datos */
 .tabla-registros tbody tr:nth-child(even) {
-    background-color: #f8fafc; /* Un gris sumamente sutil para las filas pares */
+    background-color: #f8fafc; 
 }
 
-/* Efecto Hover: Resalta la fila completa cuando pasas el mouse */
 .tabla-registros tbody tr:hover {
     background-color: #f1f5f9;
     cursor: pointer;
@@ -68,7 +65,6 @@
     color: #123006;
 }
 
-/* Etiqueta moderna para la categoría */
 .badge-categoria {
     background-color: #e0f2fe;
     color: #123006;
@@ -97,7 +93,6 @@
     vertical-align: middle;
 }
 
-/* Este contenedor interno es el que alinea los botones uno al lado del otro */
 .contenedor-botones-acciones {
     display: flex;
     gap: 10px;
@@ -179,7 +174,6 @@
     border: 1px solid #e2e8f0;
 }
 
-/* Diseño específico cuando está Cargando */
 .tabla-mensaje-estado.cargando {
     flex-direction: column;
     background-color: #ffffff;
@@ -188,7 +182,6 @@
     gap: 15px;
 }
 
-/* Diseño específico cuando ocurre un Error */
 .tabla-mensaje-estado.error {
     background-color: #fef2f2;
     border-color: #fca5a5;
@@ -217,14 +210,12 @@
 
 
 
-/* Diseño específico cuando está Vacia */
 .tabla-mensaje-estado.vacia {
     background-color: #f8fafc;
     color: #64748b;
     border-style: dashed;
 }
 
-/* Animación del Spinner circular */
 .spinner-carga {
     width: 36px;
     height: 36px;
@@ -240,14 +231,13 @@
 }
 
 .icono-error-lucide {
-    color: #ef4444; /* Un rojo vibrante y limpio */
-    flex-shrink: 0; /* Evita que el icono se haga chiquito si el texto es largo */
+    color: #ef4444; 
+    flex-shrink: 0; 
 }
 
 
-/* Estilo para el icono de inventario vacío */
 .icono-vacio-lucide {
-    color: #94a3b8; /* Un gris pizarra suave */
+    color: #94a3b8; 
     flex-shrink: 0;
 }
 
@@ -277,12 +267,11 @@
     padding: 14px 24px;
     background-color: #ffffff;
     border: 1px solid #e2f0e2;
-    border-top: none; /* Se fusiona perfectamente al fondo de la tabla */
+    border-top: none; 
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 }
 
-/* Área del Selector del Límite */
 .selector-limite {
     display: flex;
     align-items: center;
@@ -305,10 +294,9 @@
 }
 
 .select-limite-registros:focus {
-    border-color: #166534; /* Enfoque morado */
+    border-color: #166534; 
 }
 
-/* Bloque derecho con botones e información */
 .bloque-botones-paginacion {
     display: flex;
     align-items: center;
@@ -326,7 +314,6 @@
     font-weight: 700;
 }
 
-/* Botones de Paginación con Flechas */
 .btn-paginacion {
     display: flex;
     align-items: center;
@@ -370,7 +357,6 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Flexibilidad para que la barra de búsqueda ocupe más espacio */
 .grupo-input-busqueda {
     flex: 2;
     display: flex;
@@ -386,7 +372,6 @@
     min-width: 200px;
 }
 
-/* Etiquetas de título arriba de los campos */
 .etiqueta-filtro {
     font-size: 0.85rem;
     font-weight: 600;
@@ -395,7 +380,6 @@
     letter-spacing: 0.05em;
 }
 
-/* Contenedor del Input que envuelve la lupa */
 .input-con-icono {
     position: relative;
     display: flex;
@@ -409,10 +393,9 @@
     pointer-events: none;
 }
 
-/* Estilo para la caja de texto de búsqueda */
 .input-filtro-texto {
     width: 100%;
-    padding: 10px 12px 10px 38px; /* Espacio extra a la izquierda para que no tape la lupa */
+    padding: 10px 12px 10px 38px; 
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     font-size: 0.95rem;
@@ -424,11 +407,10 @@
 
 .input-filtro-texto:focus {
     background-color: #ffffff;
-    border-color: #4f46e5; /* Borde morado de enfoque */
+    border-color: #4f46e5;
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-/* Estilo para el selector desplegable de categorías */
 .select-filtro-opciones {
     width: 100%;
     padding: 10px 12px;
@@ -456,17 +438,16 @@
     justify-content: space-between; 
     align-items: center;
     padding: 0 4px;
-    margin-bottom: 12px; /* Espacio para que no se pegue a la tabla */
+    margin-bottom: 12px; 
 }
 
 .conteo-texto {
     font-size: 0.95rem;
-    color: #475569; /* Gris oscuro elegante */
+    color: #475569;
     font-weight: 500;
-    margin: 0; /* Quita los márgenes por defecto del <p> para que no se descuadre */
+    margin: 0; 
 }
 
-/* Resalta el número en negrita para que se note el cambio al filtrar */
 .conteo-texto span {
     font-weight: 700;
     color: #1e293b; 
@@ -478,7 +459,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px; /* Espacio perfecto entre el icono y la palabra */
+    gap: 6px; 
 }
 
 .icono-btn {
@@ -489,7 +470,7 @@
 
 .barra-filtros-contenedor {
     display: flex;
-    align-items: flex-end; /* Alinea los inputs y el botón por la parte inferior */
+    align-items: flex-end; 
     gap: 16px;
     width: 100%;
     margin-bottom: 20px;

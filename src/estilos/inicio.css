@@ -22,9 +22,9 @@
 .tarjeta-estadistica {
     min-height: 140px;
     padding: 24px;
-    border: 1px solid #ccd0e3;
+    border: 1px solid #020202;
     border-radius: 12px;
-    background-color: white;
+    background-color: #5fbb68;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
@@ -43,7 +43,7 @@
 
 .tarjeta-estadistica p {
     margin: 0 0 5px;
-    color: #5e6274;
+    color: #000000;
     font-size: 13px;
     font-weight: bold;
 }
@@ -78,15 +78,6 @@
     font-size: 19px;
 }
 
-.encabezado-registros button {
-    border: none;
-    background-color: transparent;
-    color: #354be0;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
 
 .encabezado-registros button:hover {
     color: #1d2ebd;
@@ -101,8 +92,8 @@
 .encabezado-tabla {
     min-height: 44px;
     padding: 0 22px;
-    background-color: #f1f0ff;
-    color: #4a4e63;
+    background-color: #5fbb68;
+    color: #070707;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.5px;

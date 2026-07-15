@@ -86,11 +86,9 @@ function PaginaInicio() {
            <section className="registros-recientes">
     <div className="encabezado-registros">
         <h2>Productos recientes</h2>
-        <button type="button">Ver todos</button>
     </div>
 
     <div className="tabla-recientes">
-        {/* El encabezado siempre se queda visible para mantener la estructura */}
         <div className="fila encabezado-tabla">
             <span>PRODUCTO</span>
             <span>CATEGORÍA</span>
