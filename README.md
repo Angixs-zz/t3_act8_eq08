@@ -29,8 +29,11 @@ B
 **Fecha de entrega:**  
 14 de julio del 2026
 
-## API utilizada
+## APIs utilizadas
 
+
+DummyJSON Users:  
+https://dummyjson.com/users  
 DummyJSON Products:  
 https://dummyjson.com/products
 
