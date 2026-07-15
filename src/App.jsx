@@ -1,9 +1,17 @@
 import { useState } from "react";
-import PaginaSistema from "./paginas/PaginaSistema"; 
-import PaginaLogin from "./paginas/PaginaLogin";    
+import PaginaSistema from "./paginas/PaginaSistema";
+import PaginaLogin from "./paginas/PaginaLogin";
 
 function App() {
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState(function () {
+    const usuarioGuardado = localStorage.getItem("usuario");
+
+    if (usuarioGuardado) {
+      return JSON.parse(usuarioGuardado);
+    }
+
+    return null;
+  });
   const [cargandoLogin, setCargandoLogin] = useState(false);
   const [errorLogin, setErrorLogin] = useState("");
 
@@ -23,7 +31,8 @@ function App() {
       }
 
       const datosUsuario = await respuesta.json();
-      setUsuario(datosUsuario); 
+      setUsuario(datosUsuario);
+      localStorage.setItem("usuario", JSON.stringify(datosUsuario));
     } catch (error) {
       setErrorLogin(error.message);
     } finally {
@@ -33,18 +42,19 @@ function App() {
 
   function manejarCerrarSesion() {
     setUsuario(null);
+    localStorage.removeItem("usuario");
   }
 
   return (
     <>
       {!usuario ? (
-        <PaginaLogin 
-          enviarLogin={manejarLogin} 
-          cargando={cargandoLogin} 
-          error={errorLogin} 
+        <PaginaLogin
+          enviarLogin={manejarLogin}
+          cargando={cargandoLogin}
+          error={errorLogin}
         />
       ) : (
-       
+
         <PaginaSistema
           usuario={usuario}
           cerrarSesion={manejarCerrarSesion}
