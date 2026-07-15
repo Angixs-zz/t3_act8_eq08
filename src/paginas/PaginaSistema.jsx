@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NavBar from "../componentes/NavBar";
-import SlideBar from "../componentes/SlideBar";
+import Sidebar from "../componentes/Sidebar";
 import PaginaInicio from "./PaginaInicio";
 import PaginaRegistros from "./PaginaRegistros";
 import "../estilos/sistema.css";
@@ -33,7 +33,7 @@ function PaginaSistema({ usuario, cerrarSesion }) {
 
     return (
         <div className="sistema">
-            <SlideBar
+            <Sidebar
                 paginaActual={paginaActual}
                 cambiarPagina={cambiarPagina}
                 sidebarAbierto={sidebarAbierto}

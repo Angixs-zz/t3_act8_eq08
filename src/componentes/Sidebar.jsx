@@ -2,7 +2,7 @@ import { Home, Package, X } from "lucide-react";
 import logoImg from "../assets/logoabarrotes.jpg";
 import "../estilos/sidebar.css";
 
-function SlideBar({
+function Sidebar({
     paginaActual,
     cambiarPagina,
     sidebarAbierto,
@@ -62,7 +62,6 @@ function SlideBar({
                         <span className="sidebar-icono">
                             <Home size={18} />
                         </span>
-
                         Inicio
                     </button>
 
@@ -78,7 +77,6 @@ function SlideBar({
                         <span className="sidebar-icono">
                             <Package size={18} />
                         </span>
-
                         Productos
                     </button>
                 </nav>
@@ -87,4 +85,4 @@ function SlideBar({
     );
 }
 
-export default SlideBar;
+export default Sidebar;
